@@ -5,7 +5,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_7i3i0"]
 font_size = 144
 
-[node name="main_menu" type="Control"]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ufqnc")
 
-[node name="background_image" type="TextureRect" parent="."]
+[node name="BackgroundImage" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="title_label" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -37,7 +37,7 @@ label_settings = SubResource("LabelSettings_7i3i0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="button_container" type="VBoxContainer" parent="."]
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -52,16 +52,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="start_button" type="Button" parent="button_container"]
+[node name="StartButton" type="Button" parent="ButtonContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 70
 text = "Start"
 
-[node name="quit_button" type="Button" parent="button_container"]
+[node name="QuitButton" type="Button" parent="ButtonContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 70
 text = "Quit"
 
-[connection signal="pressed" from="button_container/start_button" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="button_container/quit_button" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="button_container/quit_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/QuitButton" to="." method="_on_start_button_pressed"]

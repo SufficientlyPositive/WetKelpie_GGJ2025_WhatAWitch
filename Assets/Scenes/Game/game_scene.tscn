@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5fhm7hriksjo"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
+[ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
+[ext_resource type="Script" path="res://Assets/Scenes/Game/game_ui.gd" id="3_m2qu8"]
+
+[node name="GameMain" type="Node"]
+script = ExtResource("1_2dtmn")
+
+[node name="GameScene" type="Node2D" parent="."]
+script = ExtResource("1_o8wbe")
+
+[node name="GameUI" type="Node" parent="."]
+script = ExtResource("3_m2qu8")
