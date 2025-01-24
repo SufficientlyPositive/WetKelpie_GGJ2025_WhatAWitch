@@ -1,14 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=5 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_ui.gd" id="3_m2qu8"]
+[ext_resource type="Theme" uid="uid://cny8msiucnohq" path="res://Assets/UI/Themes/menu_button_theme.tres" id="4_w2t0c"]
 
-[node name="GameMain" type="Node"]
+[node name="GameMain" type="Node" node_paths=PackedStringArray("game_scene", "game_ui")]
 script = ExtResource("1_2dtmn")
+game_scene = NodePath("GameScene")
+game_ui = NodePath("GameUI")
 
 [node name="GameScene" type="Node2D" parent="."]
+process_mode = 1
 script = ExtResource("1_o8wbe")
 
-[node name="GameUI" type="Node" parent="."]
+[node name="GameUI" type="Node" parent="." node_paths=PackedStringArray("pause_menu")]
 script = ExtResource("3_m2qu8")
+pause_menu = NodePath("PauseMenu")
+
+[node name="PauseMenu" type="ColorRect" parent="GameUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.25098)
+
+[node name="PauseMenuButtons" type="VBoxContainer" parent="GameUI/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -114.0
+offset_right = 250.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="ContinueButton" type="Button" parent="GameUI/PauseMenu/PauseMenuButtons"]
+layout_mode = 2
+theme = ExtResource("4_w2t0c")
+text = "Continue"
+
+[node name="QuitToMenuButton" type="Button" parent="GameUI/PauseMenu/PauseMenuButtons"]
+layout_mode = 2
+theme = ExtResource("4_w2t0c")
+text = "Quit to Menu"
+
+[connection signal="pressed" from="GameUI/PauseMenu/PauseMenuButtons/ContinueButton" to="." method="toggle_pause"]
+[connection signal="pressed" from="GameUI/PauseMenu/PauseMenuButtons/QuitToMenuButton" to="." method="quit_to_main_menu"]
