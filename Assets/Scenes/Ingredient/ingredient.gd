@@ -64,7 +64,7 @@ func trap_in_bubble(bubble: Bubble) -> void:
 	self.reparent(bubble)
 	anim_status = SpriteAnims.STATIC
 	bubble_trapped = true
-	self.linear_damp = 2.0
+	self.linear_damp = 3.0
 	collision_area.disabled = true
 
 func set_ingredient_type(type: RecipeManager.Ingredients) -> void:

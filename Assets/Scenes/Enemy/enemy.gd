@@ -4,7 +4,7 @@ extends RigidBody2D
 #var statuses : Array = ["falling", "stuck", "running", "popping"] # Unnecessary, here for readability
 var status : String
 
-#@onready var collision_area : Area2D = $Area2D
+@onready var collision_area : CollisionShape2D = $CollisionShape2D
 @onready var enemy_sprite : AnimatedSprite2D = $AnimatedSprite2D
 
 const MAX_Y_VELOCITY: float = 300
@@ -20,7 +20,7 @@ var velocity : Vector2
 var sprite_angular_velocity : float = 0.0
 var jittering : float = 0.0
 
-var enemy_trapped : bool = false
+var bubble_trapped : bool = false
 
 func _ready():
 	set_status("falling")
@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	spinning_animation(delta)
 
 func _physics_process(delta: float) -> void:
-	if enemy_trapped == false:
+	if bubble_trapped == false:
 		apply_central_force(calc_gravity_force(delta))
 	match status:
 		"falling":
@@ -63,25 +63,31 @@ func set_status(state):
 	status = state
 	match state:
 		"falling":
-			enemy_trapped = false
+			bubble_trapped = false
 			jittering = 0.0
 			enemy_sprite.rotation = 0.0
 			sprite_angular_velocity = 5.0
 		"stuck":
-			enemy_trapped = true
+			bubble_trapped = true
 			jittering = 0.5
 			sprite_angular_velocity = 10.0
 		"running":
-			enemy_trapped = false
+			bubble_trapped = false
 			jittering = 0.0
 			enemy_sprite.rotation = 0.0
 			sprite_angular_velocity = 0.0
 		"popping":
-			enemy_trapped = true
+			bubble_trapped = true
 			jittering = 2.0
 			enemy_sprite.rotation = 0.0
 			sprite_angular_velocity = 0.0
 
+func trap_in_bubble(bubble: Bubble) -> void:
+	self.reparent(bubble)
+	bubble_trapped = true
+	self.linear_damp = 3.0
+	collision_area.disabled = true
+	
 func jittering_animation(delta):
 	enemy_sprite.position = position + jittering*Vector2(randf()-0.5, randf()-0.5)
 

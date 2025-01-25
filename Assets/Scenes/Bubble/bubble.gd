@@ -6,8 +6,8 @@ var target : Node2D = null
 var status : String
 
 const momentum_loss_factor = 1.01 # Should be bigger than 1.0 to lose momentum, less than 1.0 would make the bubble accelerate
-const capturing_speed_factor = 15.0
-const capturing_distance_threshold = 5
+const capturing_speed_factor : float = 10.0
+const capturing_distance_threshold : float = 5.0
 const wobble_base : float = 7.0
 const wobble_momentum_gain : float = 20.0
 const wobble_momentum_loss : float = 1.01
@@ -33,43 +33,56 @@ func _process(delta):
 	match status:
 		"empty":
 			# Check for transition to catching state (Check collision)
-			if collision_area.has_overlapping_bodies():
-				var first_area = collision_area.get_overlapping_bodies()[0]
-				target = first_area
-				set_status("catching")
+			if target == null:
+				if collision_area.has_overlapping_bodies():
+					var first_area = collision_area.get_overlapping_bodies()[0]
+					target = first_area
+					set_status("catching")
 			# Float up, lose momentum from player over time
 			velocity = velocity / momentum_loss_factor
 			position += (velocity + floating_velocity)*delta
 		"catching":
-			# We've collided with a target (ingredient or foe), home in on their position!!!
-			if target is RigidBody2D:
-				(target as RigidBody2D).apply_central_impulse((position - target.position) * 0.5)
-			else:
-				target.position += (position - target.position)*capturing_speed_factor*delta
-				
-			position += (target.position - position)*capturing_speed_factor*delta
-			# Check if we've reached the target position, if so, transition to falling state
-			if position.distance_to(target.position) < capturing_distance_threshold:
-				target.position = position
-				#TODO You should take complete control of the enemy's node (for position and rotation) here
-				if target is Ingredient:
-					(target as Ingredient).trap_in_bubble(self)
-				else:
-					target.reparent(self)
-				
-				set_status("falling")
-		"falling":
-			if target is RigidBody2D:
-				(target as RigidBody2D).apply_central_impulse(-target.position * 0.2)
-			else:
-				target.position += (position - target.position)*capturing_speed_factor*delta
-			
 			# Check if we've reached ground, if so, transition to popping state
-			if collision_area.has_overlapping_areas():
-				#TODO "Let my people go!" Let the captured target fall to the ground, lose control over them
+			if collision_area.has_overlapping_areas() or target == null:
+				#TODO "Let my people go!" Let the captured target be destroyed
 				set_status("popping")
-			# Start falling toward the ground
-			pass
+			else:
+				# We've collided with a target (ingredient or foe), home in on their position!!!
+				if target.bubble_trapped == true:
+						set_status("popping")
+				elif target is RigidBody2D:
+					(target as RigidBody2D).apply_central_impulse((position - target.position) * 0.5)
+				#else:
+				#	target.position += (position - target.position)*capturing_speed_factor*delta
+				#var old_target_position = target.position
+				#target.position += (position - target.position)*capturing_speed_factor*delta
+				
+				position += (target.position - position)*capturing_speed_factor*delta
+				# Check if we've reached the target position, if so, transition to falling state
+				if position.distance_to(target.position) < capturing_distance_threshold:
+					target.position = position
+					#TODO You should take complete control of the enemy's node (for position and rotation) here
+					if target.bubble_trapped == true:
+						set_status("popping")
+					else:
+						target.trap_in_bubble(self)
+					set_status("falling")
+		"falling":
+			# Check if we've reached ground, if so, transition to popping state
+			if collision_area.has_overlapping_bodies() or target == null:
+				#TODO "Let my people go!" Let the captured target be destroyed
+				set_status("popping")
+			else:
+				# Make the target follow our position very closely
+				if target is RigidBody2D:
+					(target as RigidBody2D).apply_central_impulse((- target.position) * 0.2)
+				#else:
+				#	target.position += (position - target.position)*capturing_speed_factor*delta
+				
+				#target.position += (position - target.position)*capturing_speed_factor*delta
+				
+				# Start falling toward the ground
+				position -= (floating_velocity)*delta*2.0
 		"popping":
 			# For whatever reason, either we touched ground or something else, we are killing the bubble
 			#TODO play bubble popping animation?
@@ -80,12 +93,16 @@ func set_status(state):
 	status = state
 	match state:
 		"empty":
+			bubble_sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
 			set_collision_masks([4, 5])		# Check for ingredients and enemies
 		"catching":
+			bubble_sprite.modulate = Color(0.0, 1.0, 0.0, 1.0)
 			set_collision_masks([])			# We care about nothing.
 		"falling":
+			bubble_sprite.modulate = Color(0.0, 0.0, 1.0, 1.0)
 			set_collision_masks([1])			# Check for ground only. Player's and Cauldron's job to check for us.
 		"popping":
+			bubble_sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
 			set_collision_masks([])			# "There is nothing we can do." - Napoleon Bonaparte
 
 func set_collision_masks(masks):
