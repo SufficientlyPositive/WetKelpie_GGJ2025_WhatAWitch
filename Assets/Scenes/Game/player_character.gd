@@ -8,10 +8,17 @@ const max_speed: float = 400
 var acceleration: float = 1500
 var direction: Direction = Direction.RIGHT
 
+var cauldron_contents : Array[RecipeManager.Ingredients]
+
 @onready var stored_scale = self.scale.x
 
 func _process(_delta: float):
 	set_character_direction(direction)
+	
+	if cauldron_contents.size() < 3:
+		if Input.is_action_just_pressed("ui_home"):
+			cauldron_contents.append(RecipeManager.Ingredients.values().pick_random())
+			
 
 func _physics_process(delta: float):
 	var accel: Vector2 = Vector2(get_x_accel(delta), get_y_accel(delta))
