@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chrrjtg6y86xk"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Enemy/enemy_control.gd" id="1_arnkd"]
+
+[node name="EnemyControl" type="Node2D"]
+script = ExtResource("1_arnkd")
