@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dulxilljef5ad"]
+[gd_scene load_steps=29 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -196,6 +196,7 @@ size_flags_horizontal = 4
 expand_mode = 2
 
 [node name="Recipes" type="Control" parent="GameCanvas"]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 6
 anchor_left = 1.0
@@ -343,7 +344,7 @@ autoplay = "default"
 sprite_frames = SubResource("SpriteFrames_4hrys")
 
 [node name="Cauldron" type="Area2D" parent="GameScene/PlayerCharacter"]
-collision_layer = 4
+collision_layer = 56
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameScene/PlayerCharacter/Cauldron"]
