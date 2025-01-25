@@ -41,7 +41,7 @@ func get_y_accel(delta: float) -> float:
 	
 	if Input.is_action_pressed("Jump") and self.is_on_floor():
 		y_component += -jump_force
-		
+	
 	y_component += GameScene.GRAVITY * delta
 	return y_component
 

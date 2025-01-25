@@ -154,6 +154,7 @@ position = Vector2(-4.5, 489.5)
 shape = SubResource("RectangleShape2D_o5giy")
 
 [node name="PlayerCharacter" type="CharacterBody2D" parent="GameScene"]
+unique_name_in_owner = true
 position = Vector2(960, 900)
 script = ExtResource("8_euk73")
 
