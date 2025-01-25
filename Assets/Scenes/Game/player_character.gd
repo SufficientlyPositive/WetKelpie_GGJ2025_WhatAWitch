@@ -3,10 +3,12 @@ extends CharacterBody2D
 
 enum Direction {LEFT, RIGHT}
 
-const jump_force: float = 200
-const max_speed: float = 50
-var acceleration: float = 400
+const jump_force: float = 280
+const max_speed: float = 400
+var acceleration: float = 1500
 var direction: Direction = Direction.RIGHT
+
+@onready var stored_scale = self.scale.x
 
 func _process(_delta: float):
 	set_character_direction(direction)
@@ -17,14 +19,15 @@ func _physics_process(delta: float):
 	if accel.x < 0:
 		direction = Direction.LEFT
 		if velocity.x > 0:
-			accel.x -= GameScene.FRICTION * delta
+			accel.x -= GameScene.FRICTION_FLAT * delta
 	elif accel.x > 0:
 		direction = Direction.RIGHT
 		if velocity.x < 0:
-			accel.x += GameScene.FRICTION * delta
+			accel.x += GameScene.FRICTION_FLAT * delta
 	
 	self.velocity += accel
-	self.velocity.x = clampf(self.velocity.x, -acceleration, acceleration)
+	self.velocity.x = clampf(self.velocity.x, -max_speed, max_speed)
+	self.velocity.x *= (1 - GameScene.FRICTION_COEFF)
 	move_and_slide()
 
 # movement may be floaty, 
@@ -41,15 +44,15 @@ func get_y_accel(delta: float) -> float:
 	
 	if Input.is_action_pressed("Jump") and self.is_on_floor():
 		y_component += -jump_force
-		
+	
 	y_component += GameScene.GRAVITY * delta
 	return y_component
 
 func set_character_direction(local_direction: Direction):
 	match local_direction:
 		Direction.LEFT: 
-			self.scale.y = -1
+			self.scale.y = -stored_scale
 			self.rotation_degrees = 180
 		Direction.RIGHT:
-			self.scale.y = 1
+			self.scale.y = stored_scale
 			self.rotation = 0

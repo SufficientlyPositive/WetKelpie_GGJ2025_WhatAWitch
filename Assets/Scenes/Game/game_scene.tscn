@@ -173,7 +173,9 @@ position = Vector2(-4.5, 489.5)
 shape = SubResource("RectangleShape2D_o5giy")
 
 [node name="PlayerCharacter" type="CharacterBody2D" parent="GameScene"]
-position = Vector2(960, 900)
+unique_name_in_owner = true
+position = Vector2(960, 913)
+scale = Vector2(0.8, 0.8)
 script = ExtResource("8_euk73")
 
 [node name="PlayerPhysicsCollision" type="CollisionShape2D" parent="GameScene/PlayerCharacter"]
