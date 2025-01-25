@@ -1,17 +1,33 @@
 [gd_scene load_steps=9 format=3 uid="uid://01oibwdffnxp"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Ingredient/ingredient.gd" id="1_jate4"]
-[ext_resource type="Texture2D" uid="uid://dvabhohuknoea" path="res://Assets/Images/Programmer Art/ingredient_frogslegs.png" id="2_h5hje"]
-[ext_resource type="Texture2D" uid="uid://dxrvdlrsws5on" path="res://Assets/Images/Programmer Art/ingredient_gemstone.png" id="3_vgq70"]
-[ext_resource type="Texture2D" uid="uid://dsf13gb3n6vc4" path="res://Assets/Images/Programmer Art/ingredient_nightshade.png" id="4_x4ei6"]
-[ext_resource type="Texture2D" uid="uid://f7bunx4wtge6" path="res://Assets/Images/Programmer Art/ingredient_snake_eyes.png" id="5_o4tc6"]
-[ext_resource type="Texture2D" uid="uid://tn4shq76d1pp" path="res://Assets/Images/Programmer Art/ingredient_mushroom.png" id="6_edcp4"]
+[ext_resource type="Texture2D" uid="uid://jifbbaqyyji0" path="res://Assets/Images/death_root_big.png" id="2_bmkv2"]
+[ext_resource type="Texture2D" uid="uid://glfxs6aqpyg" path="res://Assets/Images/frogs_leg_big.png" id="3_oiw7h"]
+[ext_resource type="Texture2D" uid="uid://c5onecmdl6a1n" path="res://Assets/Images/gemstone_big.png" id="4_ssdi7"]
+[ext_resource type="Texture2D" uid="uid://crv4m3jqspnat" path="res://Assets/Images/snake_eyes_big.png" id="5_arc6v"]
+[ext_resource type="Texture2D" uid="uid://iscyeyrmbp4w" path="res://Assets/Images/toadstool_big.png" id="6_g45ar"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pdigh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_h5hje")
+"texture": ExtResource("2_bmkv2")
+}],
+"loop": false,
+"name": &"deathroot_static",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bmkv2")
+}],
+"loop": true,
+"name": &"deathroot_tumble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_oiw7h")
 }],
 "loop": false,
 "name": &"frog_legs_static",
@@ -19,7 +35,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_h5hje")
+"texture": ExtResource("3_oiw7h")
 }],
 "loop": true,
 "name": &"frog_legs_tumble",
@@ -27,7 +43,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_vgq70")
+"texture": ExtResource("4_ssdi7")
 }],
 "loop": false,
 "name": &"gemstone_static",
@@ -35,7 +51,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_vgq70")
+"texture": ExtResource("4_ssdi7")
 }],
 "loop": true,
 "name": &"gemstone_tumble",
@@ -43,23 +59,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_x4ei6")
-}],
-"loop": false,
-"name": &"nightshade_static",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_x4ei6")
-}],
-"loop": true,
-"name": &"nightshade_tumble",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_o4tc6")
+"texture": ExtResource("5_arc6v")
 }],
 "loop": false,
 "name": &"snake_eyes_static",
@@ -67,7 +67,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_o4tc6")
+"texture": ExtResource("5_arc6v")
 }],
 "loop": true,
 "name": &"snake_eyes_tumble",
@@ -75,7 +75,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_edcp4")
+"texture": ExtResource("6_g45ar")
 }],
 "loop": false,
 "name": &"toadstool_static",
@@ -83,7 +83,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_edcp4")
+"texture": ExtResource("6_g45ar")
 }],
 "loop": true,
 "name": &"toadstool_tumble",
@@ -101,8 +101,9 @@ sprite = NodePath("IngredientSprite")
 collision_area = NodePath("CircleCollision")
 
 [node name="IngredientSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_pdigh")
-animation = &"snake_eyes_static"
+animation = &"toadstool_tumble"
 
 [node name="CircleCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_027b2")

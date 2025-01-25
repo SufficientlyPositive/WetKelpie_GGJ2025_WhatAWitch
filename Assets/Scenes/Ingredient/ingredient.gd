@@ -24,8 +24,8 @@ const type_sprite_map = {
 		SpriteAnims.TUMBLE : "gemstone_tumble",
 	},
 	RecipeManager.Ingredients.DEATH_ROOT : {
-		SpriteAnims.STATIC : "nightshade_static",
-		SpriteAnims.TUMBLE : "nightshade_tumble",
+		SpriteAnims.STATIC : "deathroot_static",
+		SpriteAnims.TUMBLE : "deathroot_tumble",
 	},
 	RecipeManager.Ingredients.TOADSTOOL : {
 		SpriteAnims.STATIC : "toadstool_static",
