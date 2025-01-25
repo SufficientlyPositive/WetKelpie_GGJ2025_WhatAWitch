@@ -17,6 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://bu3dpmmojpwr6" path="res://Assets/Scenes/Bubble/bubble_control.tscn" id="15_44rxp"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/spawning_area.gd" id="16_1au7j"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e542f"]
+size = Vector2(984.521, 41)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5giy"]
 size = Vector2(1157, 103)
 
@@ -58,9 +61,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e542f"]
-size = Vector2(984.521, 41)
 
 [node name="GameMain" type="Node" node_paths=PackedStringArray("game_scene", "game_canvas")]
 script = ExtResource("1_2dtmn")
@@ -143,7 +143,7 @@ horizontal_alignment = 1
 
 [node name="PauseMenu" type="ColorRect" parent="GameCanvas"]
 visible = false
-z_index = 1
+z_index = 100
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -183,8 +183,23 @@ script = ExtResource("1_o8wbe")
 player_character = NodePath("PlayerCharacter")
 ingredient_spawner = NodePath("IngredientSpawner")
 
+[node name="IngredientSpawner" type="Node2D" parent="GameScene" node_paths=PackedStringArray("spawning_area")]
+z_index = 2
+script = ExtResource("14_xe6ob")
+spawning_area = NodePath("IngredientSpawningArea")
+
+[node name="IngredientSpawningArea" type="Area2D" parent="GameScene/IngredientSpawner" node_paths=PackedStringArray("rectangle")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("16_1au7j")
+rectangle = NodePath("Area")
+
+[node name="Area" type="CollisionShape2D" parent="GameScene/IngredientSpawner/IngredientSpawningArea"]
+position = Vector2(954.135, -30.5)
+shape = SubResource("RectangleShape2D_e542f")
+
 [node name="BubbleControl" parent="GameScene" instance=ExtResource("15_44rxp")]
-z_index = 1
+z_index = 4
 
 [node name="ForegroundWalkable" type="StaticBody2D" parent="GameScene"]
 position = Vector2(960, 540)
@@ -199,6 +214,7 @@ shape = SubResource("RectangleShape2D_o5giy")
 
 [node name="PlayerCharacter" type="CharacterBody2D" parent="GameScene"]
 unique_name_in_owner = true
+z_index = 3
 position = Vector2(960, 913)
 scale = Vector2(0.8, 0.8)
 script = ExtResource("8_euk73")
@@ -240,20 +256,6 @@ script = ExtResource("13_4tnrd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameScene/EverythingKillbox"]
 polygon = PackedVector2Array(-685.721, 1740, 2687.18, 1740, 2720.6, -567, -695.85, -567, -261.324, -261, 2214.16, -277, 2190.86, 1266, -227.898, 1274, -261.324, -261, -695.85, -572)
-
-[node name="IngredientSpawner" type="Node2D" parent="GameScene" node_paths=PackedStringArray("spawning_area")]
-script = ExtResource("14_xe6ob")
-spawning_area = NodePath("IngredientSpawningArea")
-
-[node name="IngredientSpawningArea" type="Area2D" parent="GameScene/IngredientSpawner" node_paths=PackedStringArray("rectangle")]
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("16_1au7j")
-rectangle = NodePath("Area")
-
-[node name="Area" type="CollisionShape2D" parent="GameScene/IngredientSpawner/IngredientSpawningArea"]
-position = Vector2(954.135, -30.5)
-shape = SubResource("RectangleShape2D_e542f")
 
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/ContinueButton" to="." method="toggle_pause"]
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/QuitToMenuButton" to="." method="quit_to_main_menu"]

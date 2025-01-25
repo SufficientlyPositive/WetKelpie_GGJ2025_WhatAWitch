@@ -59,8 +59,14 @@ func _process(delta):
 					(target as Ingredient).trap_in_bubble(self)
 				else:
 					target.reparent(self)
+				
 				set_status("falling")
 		"falling":
+			if target is RigidBody2D:
+				(target as RigidBody2D).apply_central_impulse(-target.position * 0.2)
+			else:
+				target.position += (position - target.position)*capturing_speed_factor*delta
+			
 			# Check if we've reached ground, if so, transition to popping state
 			if collision_area.has_overlapping_areas():
 				#TODO "Let my people go!" Let the captured target fall to the ground, lose control over them

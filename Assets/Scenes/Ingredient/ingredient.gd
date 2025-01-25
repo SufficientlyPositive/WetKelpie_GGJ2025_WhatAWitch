@@ -40,6 +40,7 @@ var anim_status: SpriteAnims = SpriteAnims.STATIC
 var bubble_trapped: bool = false
 
 @export var sprite: AnimatedSprite2D
+@export var collision_area: CollisionShape2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -58,6 +59,8 @@ func trap_in_bubble(bubble: Bubble) -> void:
 	self.reparent(bubble)
 	anim_status = SpriteAnims.STATIC
 	bubble_trapped = true
+	self.linear_damp = 2.0
+	collision_area.disabled = true
 
 func set_ingredient_type(type: RecipeManager.Ingredients) -> void:
 	current_anim_static = type_sprite_map[type][SpriteAnims.STATIC]
