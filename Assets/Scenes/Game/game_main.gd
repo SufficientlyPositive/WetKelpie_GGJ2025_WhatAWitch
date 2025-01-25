@@ -5,6 +5,8 @@ extends Node
 @export var game_scene: GameScene
 @export var game_canvas: GameCanvas
 
+var points: int = 0
+
 func _ready():
 	if not is_instance_valid(root_node):
 		push_error("Root node did not successfully instantiate in GameMain. Unable to quit to main menu.")
@@ -26,3 +28,10 @@ func quit_to_main_menu():
 func _process(_delta):
 	if Input.is_action_just_pressed("Toggle Pause Menu"):
 		toggle_pause()
+
+func change_points(add_val: int) -> void:
+	points += add_val
+	change_points_ui(points)
+
+func change_points_ui(new_val: int) -> void:
+	pass

@@ -18,7 +18,21 @@ enum Ingredients {
 		DEATH_ROOT,
 		TOADSTOOL,
 		GEMSTONE,
+		BUBBLED_ENEMY,
 }
+
+static func compare_ingredients(a: Ingredients, b: Ingredients) -> bool:
+	return (a == Ingredients.BUBBLED_ENEMY) or (b == Ingredients.BUBBLED_ENEMY) or (a == b)
+
+static func compare_ingredients_list(a: Array[Ingredients], b: Array[Ingredients]) -> bool:
+	if a.size() != b.size():
+		return false
+	
+	for i in range(a.size()):
+		if not RecipeManager.compare_ingredients(a[i], b[i]):
+			return false
+	
+	return true
 
 class Recipe:
 	var ingredients : Array[Ingredients]
@@ -27,7 +41,7 @@ class Recipe:
 	func _init(ing : Array[Ingredients], val : int) -> void:
 		ingredients = ing
 		value = val
-	
+
 
 var valid_recipes : Array[Recipe] = [
 	

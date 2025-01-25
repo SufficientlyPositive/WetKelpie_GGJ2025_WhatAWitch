@@ -8,6 +8,8 @@ const FRICTION_COEFF: float = 0.02
 const ingredient_spawn_time: float = 1.5
 const enemy_spawn_time: float = 5
 
+var points: int = 0
+
 @export var player_character: CharacterBody2D
 @export var ingredient_spawner: IngredientSpawner
 @export var enemy_spawner: EnemyControl

@@ -67,10 +67,11 @@ func trap_in_bubble(bubble: Bubble) -> void:
 	self.linear_damp = 3.0
 	collision_area.disabled = true
 
-func set_ingredient_type(type: RecipeManager.Ingredients) -> void:
-	current_anim_static = type_sprite_map[type][SpriteAnims.STATIC]
-	current_anim_tumble = type_sprite_map[type][SpriteAnims.TUMBLE]
+func set_ingredient_type(atype: RecipeManager.Ingredients) -> void:
+	current_anim_static = type_sprite_map[atype][SpriteAnims.STATIC]
+	current_anim_tumble = type_sprite_map[atype][SpriteAnims.TUMBLE]
 	set_anim(anim_status)
+	type = atype
 
 func set_anim(anim: SpriteAnims) -> void:
 	match anim:

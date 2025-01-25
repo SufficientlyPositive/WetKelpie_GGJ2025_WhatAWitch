@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=29 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -16,14 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://cp36q5bxonfox" path="res://Assets/Images/Programmer Art/witch_sprite.png" id="8_m8um2"]
 [ext_resource type="PackedScene" uid="uid://chrrjtg6y86xk" path="res://Assets/Scenes/Enemy/enemy_control.tscn" id="9_37kig"]
 [ext_resource type="Texture2D" uid="uid://3elln2fcduhb" path="res://Assets/Images/Programmer Art/shield_sprite.png" id="9_e0jhf"]
+[ext_resource type="Texture2D" uid="uid://bkdqqkw1uo7oj" path="res://Assets/Images/Programmer Art/cauldron_sprite.png" id="10_n75eg"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/everything_killbox.gd" id="13_4tnrd"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/ingredient_spawner.gd" id="14_xe6ob"]
 [ext_resource type="PackedScene" uid="uid://bu3dpmmojpwr6" path="res://Assets/Scenes/Bubble/bubble_control.tscn" id="15_44rxp"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/spawning_area.gd" id="16_1au7j"]
-[ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/cauldron.png" id="20_ya0mu"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia71d"]
-bg_color = Color(0.298039, 0.0509804, 0.054902, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e542f"]
 size = Vector2(984.521, 41)
@@ -63,7 +60,7 @@ size = Vector2(180.509, 95)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("20_ya0mu")
+"texture": ExtResource("10_n75eg")
 }],
 "loop": true,
 "name": &"default",
@@ -120,9 +117,9 @@ texture = ExtResource("4_5efoe")
 
 [node name="TextureRect" type="TextureRect" parent="GameCanvas/LeftColumn"]
 layout_mode = 0
-offset_left = -24.0
+offset_left = -19.0
 offset_top = 116.0
-offset_right = 372.0
+offset_right = 374.0
 offset_bottom = 1080.0
 texture = ExtResource("6_nj5fe")
 expand_mode = 1
@@ -148,17 +145,15 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -391.0
+offset_left = -390.0
 offset_top = -427.0
-offset_right = 5.0
 offset_bottom = 540.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("7_jbq0w")
 expand_mode = 1
 
-[node name="CauldronUI" type="Control" parent="GameCanvas"]
-unique_name_in_owner = true
+[node name="CauldronContents" type="Control" parent="GameCanvas"]
 layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
@@ -168,45 +163,34 @@ offset_right = 386.0
 offset_bottom = 540.0
 grow_vertical = 2
 
-[node name="Contents" type="VBoxContainer" parent="GameCanvas/CauldronUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameCanvas/CauldronContents"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -80.0
-offset_top = -185.0
-offset_right = 91.0
-offset_bottom = 329.0
+offset_left = -140.5
+offset_top = -328.5
+offset_right = 140.5
+offset_bottom = 328.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
 
-[node name="I0" type="TextureRect" parent="GameCanvas/CauldronUI/Contents"]
-custom_minimum_size = Vector2(100, 100)
+[node name="I0" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 expand_mode = 2
 
-[node name="Separator1" type="Panel" parent="GameCanvas/CauldronUI/Contents"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ia71d")
-
-[node name="I1" type="TextureRect" parent="GameCanvas/CauldronUI/Contents"]
-custom_minimum_size = Vector2(100, 100)
+[node name="I1" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 expand_mode = 2
 
-[node name="Separator2" type="Panel" parent="GameCanvas/CauldronUI/Contents"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ia71d")
-
-[node name="I2" type="TextureRect" parent="GameCanvas/CauldronUI/Contents"]
-custom_minimum_size = Vector2(100, 100)
+[node name="I2" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 expand_mode = 2
@@ -360,16 +344,16 @@ autoplay = "default"
 sprite_frames = SubResource("SpriteFrames_4hrys")
 
 [node name="Cauldron" type="Area2D" parent="GameScene/PlayerCharacter"]
-collision_layer = 56
-collision_mask = 4
+collision_layer = 4
+collision_mask = 56
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameScene/PlayerCharacter/Cauldron"]
-position = Vector2(-23.791, -16.25)
+position = Vector2(-21.1666, -41.5)
 shape = SubResource("RectangleShape2D_aalth")
 
 [node name="CauldronSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/Cauldron"]
-position = Vector2(-64.3062, -17.5)
-scale = Vector2(0.25, 0.23)
+position = Vector2(-71.9187, -30)
+scale = Vector2(0.866757, 0.8)
 sprite_frames = SubResource("SpriteFrames_5neq7")
 autoplay = "default"
 
@@ -381,4 +365,5 @@ polygon = PackedVector2Array(-685.721, 1740, 2687.18, 1740, 2720.6, -567, -695.8
 
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/ContinueButton" to="." method="toggle_pause"]
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/QuitToMenuButton" to="." method="quit_to_main_menu"]
+[connection signal="body_entered" from="GameScene/PlayerCharacter/Cauldron" to="GameScene/PlayerCharacter" method="on_cauldron_body_entered"]
 [connection signal="body_entered" from="GameScene/EverythingKillbox" to="GameScene/EverythingKillbox" method="_on_killbox_entered"]
