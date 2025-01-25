@@ -35,10 +35,7 @@ func _process(delta):
 			# Check for transition to catching state (Check collision)
 			if collision_area.has_overlapping_bodies():
 				var first_area = collision_area.get_overlapping_bodies()[0]
-				if first_area is Ingredient:
-					target = first_area
-				else:
-					first_area.get_parent()
+				target = first_area
 				set_status("catching")
 			# Float up, lose momentum from player over time
 			velocity = velocity / momentum_loss_factor
