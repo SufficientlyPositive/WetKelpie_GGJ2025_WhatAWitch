@@ -1,6 +1,15 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
+
+var ingredient_sprites = [
+	preload("res://Assets/Images/snake_eyes_big.png"),
+	preload("res://Assets/Images/frogs_leg_big.png"),
+	preload("res://Assets/Images/death_root_big.png"),
+	preload("res://Assets/Images/toadstool_big.png"),
+	preload("res://Assets/Images/gemstone_big.png"),
+]
+
 enum Direction {LEFT, RIGHT}
 
 const jump_force: float = 280
@@ -12,13 +21,24 @@ var cauldron_contents : Array[RecipeManager.Ingredients]
 
 @onready var stored_scale = self.scale.x
 
+
+func update_cauldron_ui():
+	for i in range(3):
+		var box = %CauldronUI/Contents.get_node("I" + str(i))
+		box.texture = null
+		
+	for i in range(cauldron_contents.size()):
+		var box = %CauldronUI/Contents.get_node("I" + str(i))
+		box.texture = ingredient_sprites[int(cauldron_contents[i])]
+
+
 func _process(_delta: float):
 	set_character_direction(direction)
 	
 	if cauldron_contents.size() < 3:
 		if Input.is_action_just_pressed("ui_home"):
 			cauldron_contents.append(RecipeManager.Ingredients.values().pick_random())
-			
+			update_cauldron_ui()
 
 func _physics_process(delta: float):
 	var accel: Vector2 = Vector2(get_x_accel(delta), get_y_accel(delta))
