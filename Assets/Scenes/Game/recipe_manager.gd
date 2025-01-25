@@ -1,5 +1,5 @@
 class_name RecipeManager
-extends NinePatchRect
+extends Control
 
 
 var ingredient_sprites = [
@@ -30,31 +30,7 @@ class Recipe:
 	
 
 var valid_recipes : Array[Recipe] = [
-	Recipe.new([
-			Ingredients.SNAKE_EYES,
-			Ingredients.SNAKE_EYES,
-			Ingredients.SNAKE_EYES],
-			100),
-	Recipe.new([
-			Ingredients.FROGS_LEG,
-			Ingredients.FROGS_LEG,
-			Ingredients.FROGS_LEG],
-			100),
-	Recipe.new([
-			Ingredients.DEATH_ROOT,
-			Ingredients.DEATH_ROOT,
-			Ingredients.DEATH_ROOT],
-			100),
-	Recipe.new([
-			Ingredients.TOADSTOOL,
-			Ingredients.TOADSTOOL,
-			Ingredients.TOADSTOOL],
-			100),
-	Recipe.new([
-			Ingredients.GEMSTONE,
-			Ingredients.GEMSTONE,
-			Ingredients.GEMSTONE],
-			100),
+	
 	Recipe.new([
 			Ingredients.FROGS_LEG,
 			Ingredients.DEATH_ROOT,
