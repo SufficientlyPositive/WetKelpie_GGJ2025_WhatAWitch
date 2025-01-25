@@ -62,6 +62,9 @@ func on_cauldron_body_entered(body: Node2D):
 	elif body is Enemy:
 		pass
 
+func validate_cauldron_contents():
+	pass
+
 func set_character_direction(local_direction: Direction):
 	match local_direction:
 		Direction.LEFT: 
