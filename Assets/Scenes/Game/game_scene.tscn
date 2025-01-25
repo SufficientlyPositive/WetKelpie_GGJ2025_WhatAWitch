@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=19 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cae3xvn5knrs0" path="res://Assets/Images/Programmer Art/background_recipe_board.png" id="4_nwijb"]
 [ext_resource type="Texture2D" uid="uid://bjkpdbvd0x57s" path="res://Assets/Images/Programmer Art/background.png" id="4_tpxbo"]
 [ext_resource type="Theme" uid="uid://cny8msiucnohq" path="res://Assets/UI/Themes/menu_button_theme.tres" id="4_w2t0c"]
+[ext_resource type="Script" path="res://Assets/Scenes/Game/recipe_manager.gd" id="5_tkifj"]
 [ext_resource type="Texture2D" uid="uid://6jgh3wgkufuj" path="res://Assets/Images/Programmer Art/wood_plank.png" id="7_ri1rv"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/player_character.gd" id="8_euk73"]
 [ext_resource type="Texture2D" uid="uid://cp36q5bxonfox" path="res://Assets/Images/Programmer Art/witch_sprite.png" id="8_m8um2"]
@@ -64,7 +65,7 @@ script = ExtResource("3_m2qu8")
 in_game_ui = NodePath("Recipes")
 pause_menu = NodePath("PauseMenu")
 
-[node name="Background2" type="TextureRect" parent="GameCanvas"]
+[node name="BackBackground" type="TextureRect" parent="GameCanvas"]
 modulate = Color(0.203692, 0.203701, 0.251622, 1)
 z_index = -1
 anchors_preset = 8
@@ -100,6 +101,24 @@ offset_right = 1901.0
 offset_bottom = 848.0
 texture = ExtResource("4_nwijb")
 expand_mode = 1
+script = ExtResource("5_tkifj")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameCanvas/Recipes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameCanvas/Recipes/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameCanvas/Recipes/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GameCanvas/Recipes/MarginContainer"]
+layout_mode = 2
 
 [node name="PauseMenu" type="ColorRect" parent="GameCanvas"]
 visible = false
