@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc123qmic77h7"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Bubble/bubble.gd" id="1_sqila"]
+[ext_resource type="Texture2D" uid="uid://dw3qgmdh1bm02" path="res://Assets/Images/Elouan Art/T_Bubble_01.png" id="2_51rly"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_utahn"]
+radius = 45.0
+
+[node name="Bubble" type="Node2D"]
+script = ExtResource("1_sqila")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("2_51rly")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_utahn")

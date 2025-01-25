@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu3dpmmojpwr6"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Bubble/bubble_control.gd" id="1_jxrmh"]
+
+[node name="BubbleControl" type="Node2D"]
+script = ExtResource("1_jxrmh")
