@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 func _on_killbox_entered(body: Node2D) -> void:
 	if body is PlayerCharacter:
 		pass
-	#elif body is Ingredient:
-		#body.queue_free()
+	elif body is Ingredient:
+		body.queue_free()
 	else:
 		body.get_parent().queue_free()
