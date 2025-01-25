@@ -25,6 +25,9 @@ var enemy_trapped : bool = false
 func _ready():
 	set_status("falling")
 
+func _process(delta: float) -> void:
+	spinning_animation(delta)
+
 func _physics_process(delta: float) -> void:
 	if enemy_trapped == false:
 		apply_central_force(calc_gravity_force(delta))
@@ -37,7 +40,7 @@ func _physics_process(delta: float) -> void:
 			#TODO: Lock physics. This guy is no longer in control of his destiny!
 			jittering_animation(delta)
 		"running":
-			enemy_sprite.play("running")
+			enemy_sprite.play("run")
 			apply_impulse(running_acceleration * delta)
 			#position += velocity * delta
 		"popping":
@@ -63,11 +66,11 @@ func set_status(state):
 			enemy_trapped = false
 			jittering = 0.0
 			enemy_sprite.rotation = 0.0
-			sprite_angular_velocity = 0.2
+			sprite_angular_velocity = 5.0
 		"stuck":
 			enemy_trapped = true
 			jittering = 0.5
-			sprite_angular_velocity = 1.0
+			sprite_angular_velocity = 10.0
 		"running":
 			enemy_trapped = false
 			jittering = 0.0
