@@ -165,6 +165,8 @@ radius = 25.0
 height = 60.0
 
 [node name="Enemy" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_j46e7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

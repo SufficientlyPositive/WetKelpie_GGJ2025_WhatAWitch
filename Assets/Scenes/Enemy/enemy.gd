@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 			#TODO: Lock physics. This guy is no longer in control of his destiny!
 			jittering_animation(delta)
 		"running":
-			enemy_sprite.play("running")
+			enemy_sprite.play("run")
 			apply_impulse(running_acceleration * delta)
 			#position += velocity * delta
 		"popping":

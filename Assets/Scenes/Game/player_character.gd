@@ -55,6 +55,13 @@ func get_y_accel(delta: float) -> float:
 	y_component += GameScene.GRAVITY * delta
 	return y_component
 
+func on_cauldron_body_entered(body: Node2D):
+	if body is Ingredient:
+		var ingredient: Ingredient = body as Ingredient
+		
+	elif body is Enemy:
+		pass
+
 func set_character_direction(local_direction: Direction):
 	match local_direction:
 		Direction.LEFT: 
