@@ -96,6 +96,8 @@ radius = 28.0179
 [node name="Ingredient" type="RigidBody2D" node_paths=PackedStringArray("sprite", "collision_area")]
 collision_layer = 8
 gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_jate4")
 sprite = NodePath("IngredientSprite")
 collision_area = NodePath("CircleCollision")
@@ -107,3 +109,5 @@ animation = &"toadstool_tumble"
 
 [node name="CircleCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_027b2")
+
+[connection signal="body_entered" from="." to="." method="on_contact"]

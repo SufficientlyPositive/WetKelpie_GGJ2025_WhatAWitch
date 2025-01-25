@@ -46,6 +46,10 @@ var bubble_trapped: bool = false
 func _ready() -> void:
 	pass # Replace with function body.
 
+func on_contact(body: Node):
+	if body is StaticBody2D:
+		queue_free()
+
 func _physics_process(delta: float) -> void:
 	if not bubble_trapped:
 		apply_central_force(calc_gravity_force(delta))
