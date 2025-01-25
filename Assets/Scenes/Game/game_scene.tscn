@@ -16,11 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://cp36q5bxonfox" path="res://Assets/Images/Programmer Art/witch_sprite.png" id="8_m8um2"]
 [ext_resource type="PackedScene" uid="uid://chrrjtg6y86xk" path="res://Assets/Scenes/Enemy/enemy_control.tscn" id="9_37kig"]
 [ext_resource type="Texture2D" uid="uid://3elln2fcduhb" path="res://Assets/Images/Programmer Art/shield_sprite.png" id="9_e0jhf"]
-[ext_resource type="Texture2D" uid="uid://bkdqqkw1uo7oj" path="res://Assets/Images/Programmer Art/cauldron_sprite.png" id="10_n75eg"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/everything_killbox.gd" id="13_4tnrd"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/ingredient_spawner.gd" id="14_xe6ob"]
 [ext_resource type="PackedScene" uid="uid://bu3dpmmojpwr6" path="res://Assets/Scenes/Bubble/bubble_control.tscn" id="15_44rxp"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/spawning_area.gd" id="16_1au7j"]
+[ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/cauldron.png" id="20_ya0mu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e542f"]
 size = Vector2(984.521, 41)
@@ -60,7 +60,7 @@ size = Vector2(180.509, 95)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_n75eg")
+"texture": ExtResource("20_ya0mu")
 }],
 "loop": true,
 "name": &"default",
@@ -170,27 +170,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -140.5
-offset_top = -328.5
-offset_right = 140.5
-offset_bottom = 328.5
+offset_left = -112.0
+offset_top = -185.0
+offset_right = 123.0
+offset_bottom = 329.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="I0" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 expand_mode = 2
 
 [node name="I1" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 expand_mode = 2
 
 [node name="I2" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 expand_mode = 2
@@ -348,12 +348,12 @@ collision_layer = 56
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameScene/PlayerCharacter/Cauldron"]
-position = Vector2(-21.1666, -41.5)
+position = Vector2(-23.791, -16.25)
 shape = SubResource("RectangleShape2D_aalth")
 
 [node name="CauldronSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/Cauldron"]
-position = Vector2(-71.9187, -30)
-scale = Vector2(0.866757, 0.8)
+position = Vector2(-64.3062, -17.5)
+scale = Vector2(0.25, 0.23)
 sprite_frames = SubResource("SpriteFrames_5neq7")
 autoplay = "default"
 
