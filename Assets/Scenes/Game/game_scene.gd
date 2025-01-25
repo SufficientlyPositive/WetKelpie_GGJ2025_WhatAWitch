@@ -5,7 +5,7 @@ const GRAVITY: float = 750
 const FRICTION_FLAT: float = 400
 const FRICTION_COEFF: float = 0.02
 
-const ingredient_spawn_time: float = 0.5
+const ingredient_spawn_time: float = 2.0
 
 @export var player_character: CharacterBody2D
 @export var ingredient_spawner: IngredientSpawner

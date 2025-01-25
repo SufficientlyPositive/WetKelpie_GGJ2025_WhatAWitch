@@ -6,8 +6,8 @@ var target : Node2D = null
 var status : String
 
 const momentum_loss_factor = 1.01 # Should be bigger than 1.0 to lose momentum, less than 1.0 would make the bubble accelerate
-const capturing_speed_factor = 5.0 # 1.0
-const capturing_distance_threshold = 50
+const capturing_speed_factor = 15.0
+const capturing_distance_threshold = 5
 const wobble_base : float = 7.0
 const wobble_momentum_gain : float = 20.0
 const wobble_momentum_loss : float = 1.01
@@ -45,7 +45,11 @@ func _process(delta):
 			position += (velocity + floating_velocity)*delta
 		"catching":
 			# We've collided with a target (ingredient or foe), home in on their position!!!
-			target.position += (position - target.position)*capturing_speed_factor*delta
+			if target is RigidBody2D:
+				(target as RigidBody2D).apply_central_impulse((position - target.position) * 0.5)
+			else:
+				target.position += (position - target.position)*capturing_speed_factor*delta
+				
 			position += (target.position - position)*capturing_speed_factor*delta
 			# Check if we've reached the target position, if so, transition to falling state
 			if position.distance_to(target.position) < capturing_distance_threshold:

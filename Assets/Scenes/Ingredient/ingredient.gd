@@ -46,17 +46,12 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _physics_process(delta: float) -> void:
-	apply_central_force(calc_gravity_force(delta))
+	if not bubble_trapped:
+		apply_central_force(calc_gravity_force(delta))
 
 func calc_gravity_force(delta: float) -> Vector2:
 	const gravity = GameScene.GRAVITY * 10
-	
-	var y_resist: float = 0
-	if not bubble_trapped:
-		y_resist = ((self.linear_velocity.y + 10) / MAX_Y_VELOCITY) * gravity
-	else:
-		y_resist = ((self.linear_velocity.y + 10) / MAX_Y_BUBBLE_VELOCITY) * gravity
-
+	var y_resist: float = ((self.linear_velocity.y + 10) / MAX_Y_VELOCITY) * gravity
 	return Vector2(0, (gravity - y_resist) * delta)
 
 func trap_in_bubble(bubble: Bubble) -> void:
