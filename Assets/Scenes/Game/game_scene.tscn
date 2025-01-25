@@ -68,7 +68,7 @@ game_canvas = NodePath("GameCanvas")
 
 [node name="GameCanvas" type="Node" parent="." node_paths=PackedStringArray("in_game_ui", "pause_menu")]
 script = ExtResource("3_m2qu8")
-in_game_ui = NodePath("Recipes")
+in_game_ui = NodePath("")
 pause_menu = NodePath("PauseMenu")
 
 [node name="BackBackground" type="TextureRect" parent="GameCanvas"]
@@ -100,13 +100,16 @@ grow_vertical = 2
 texture = ExtResource("4_tpxbo")
 expand_mode = 1
 
-[node name="Recipes" type="TextureRect" parent="GameCanvas"]
+[node name="Recipes" type="NinePatchRect" parent="GameCanvas"]
 offset_left = 1528.0
 offset_top = 28.0
 offset_right = 1901.0
-offset_bottom = 848.0
+offset_bottom = 960.0
 texture = ExtResource("4_nwijb")
-expand_mode = 1
+patch_margin_left = 91
+patch_margin_top = 61
+patch_margin_right = 82
+patch_margin_bottom = 253
 script = ExtResource("5_tkifj")
 
 [node name="MarginContainer" type="MarginContainer" parent="GameCanvas/Recipes"]
@@ -116,15 +119,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameCanvas/Recipes/MarginContainer"]
+[node name="RecipeCards" type="VBoxContainer" parent="GameCanvas/Recipes/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameCanvas/Recipes/MarginContainer/VBoxContainer"]
+[node name="CurrentRecipe" type="VBoxContainer" parent="GameCanvas/Recipes/MarginContainer"]
 layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="GameCanvas/Recipes/MarginContainer"]
-layout_mode = 2
+alignment = 2
 
 [node name="PauseMenu" type="ColorRect" parent="GameCanvas"]
 visible = false
