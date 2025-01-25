@@ -1,4 +1,4 @@
-class_name GameUI
+class_name GameCanvas
 extends Node
 
 @export var in_game_ui: Control # placeholder
