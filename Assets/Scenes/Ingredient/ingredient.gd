@@ -15,7 +15,7 @@ const type_sprite_map = {
 		SpriteAnims.STATIC : "snake_eyes_static",
 		SpriteAnims.TUMBLE : "snake_eyes_tumble",
 	},
-	RecipeManager.Ingredients.FROGS_LEGS : {
+	RecipeManager.Ingredients.FROGS_LEG : {
 		SpriteAnims.STATIC : "frog_legs_static",
 		SpriteAnims.TUMBLE : "frog_legs_tumble",
 	},
@@ -23,7 +23,7 @@ const type_sprite_map = {
 		SpriteAnims.STATIC : "gemstone_static",
 		SpriteAnims.TUMBLE : "gemstone_tumble",
 	},
-	RecipeManager.Ingredients.NIGHTSHADE : {
+	RecipeManager.Ingredients.DEATH_ROOT : {
 		SpriteAnims.STATIC : "nightshade_static",
 		SpriteAnims.TUMBLE : "nightshade_tumble",
 	},

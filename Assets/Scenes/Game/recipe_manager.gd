@@ -3,19 +3,19 @@ extends NinePatchRect
 
 
 var ingredient_sprites = [
-	preload("res://Assets/Images/Programmer Art/ingredient_snake_eyes.png"),
-	preload("res://Assets/Images/Programmer Art/ingredient_frogslegs.png"),
-	preload("res://Assets/Images/Programmer Art/ingredient_nightshade.png"),
-	preload("res://Assets/Images/Programmer Art/ingredient_mushroom.png"),
-	preload("res://Assets/Images/Programmer Art/ingredient_gemstone.png"),
+	preload("res://Assets/Images/snake_eyes_big.png"),
+	preload("res://Assets/Images/frogs_leg_big.png"),
+	preload("res://Assets/Images/death_root_big.png"),
+	preload("res://Assets/Images/toadstool_big.png"),
+	preload("res://Assets/Images/gemstone_big.png"),
 ]
 var recipe_card = preload("res://Assets/Scenes/Game/recipe_card.tscn")
 
 
 enum Ingredients {
 		SNAKE_EYES,
-		FROGS_LEGS,
-		NIGHTSHADE,
+		FROGS_LEG,
+		DEATH_ROOT,
 		TOADSTOOL,
 		GEMSTONE,
 }
@@ -36,14 +36,14 @@ var valid_recipes : Array[Recipe] = [
 			Ingredients.SNAKE_EYES],
 			100),
 	Recipe.new([
-			Ingredients.FROGS_LEGS,
-			Ingredients.FROGS_LEGS,
-			Ingredients.FROGS_LEGS],
+			Ingredients.FROGS_LEG,
+			Ingredients.FROGS_LEG,
+			Ingredients.FROGS_LEG],
 			100),
 	Recipe.new([
-			Ingredients.NIGHTSHADE,
-			Ingredients.NIGHTSHADE,
-			Ingredients.NIGHTSHADE],
+			Ingredients.DEATH_ROOT,
+			Ingredients.DEATH_ROOT,
+			Ingredients.DEATH_ROOT],
 			100),
 	Recipe.new([
 			Ingredients.TOADSTOOL,
@@ -56,53 +56,53 @@ var valid_recipes : Array[Recipe] = [
 			Ingredients.GEMSTONE],
 			100),
 	Recipe.new([
-			Ingredients.FROGS_LEGS,
-			Ingredients.NIGHTSHADE,
-			Ingredients.GEMSTONE],
-			100),
+			Ingredients.FROGS_LEG,
+			Ingredients.DEATH_ROOT,
+			Ingredients.SNAKE_EYES],
+			200),
 	Recipe.new([
 			Ingredients.SNAKE_EYES,
-			Ingredients.FROGS_LEGS,
+			Ingredients.FROGS_LEG,
 			Ingredients.GEMSTONE],
-			100),
+			200),
 	Recipe.new([
-			Ingredients.FROGS_LEGS,
+			Ingredients.FROGS_LEG,
 			Ingredients.GEMSTONE,
 			Ingredients.TOADSTOOL],
-			100),
+			200),
 	Recipe.new([
 			Ingredients.GEMSTONE,
-			Ingredients.FROGS_LEGS,
-			Ingredients.NIGHTSHADE],
-			100),
+			Ingredients.FROGS_LEG,
+			Ingredients.DEATH_ROOT],
+			200),
 	Recipe.new([
 			Ingredients.TOADSTOOL,
-			Ingredients.FROGS_LEGS,
+			Ingredients.SNAKE_EYES,
 			Ingredients.GEMSTONE],
-			100),
+			200),
 	Recipe.new([
-			Ingredients.NIGHTSHADE,
+			Ingredients.DEATH_ROOT,
 			Ingredients.TOADSTOOL,
 			Ingredients.SNAKE_EYES],
-			100),
+			200),
 	Recipe.new([
 			Ingredients.TOADSTOOL,
-			Ingredients.FROGS_LEGS,
+			Ingredients.FROGS_LEG,
 			Ingredients.GEMSTONE],
-			100),
+			200),
 ]
 
 var current_recipe : Recipe
 
 
 func pick_new_current_recipe():
-	if $MarginContainer/CurrentRecipe.get_child_count() > 0:
-		$MarginContainer/CurrentRecipe.get_child(0).queue_free()
+	if $MarginContainer/CurrentRecipe.get_child_count() > 1:
+		$MarginContainer/CurrentRecipe.get_child(1).queue_free()
 	current_recipe = valid_recipes.pick_random()
 	var rc = recipe_card.instantiate()
 	for i in range(3):
 		rc.get_node("I" + str(i)).texture = ingredient_sprites[int(current_recipe.ingredients[i])]
-		rc.get_node("Val").text = str(current_recipe.value)
+		rc.get_node("Val").text = str(current_recipe.value * 5)
 	$MarginContainer/CurrentRecipe.add_child(rc)
 
 
@@ -114,6 +114,8 @@ func _ready() -> void:
 			rc.get_node("I" + str(i)).texture = ingredient_sprites[int(r.ingredients[i])]
 		rc.get_node("Val").text = str(r.value)
 		$MarginContainer/RecipeCards.add_child(rc)
+	
+	pick_new_current_recipe()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

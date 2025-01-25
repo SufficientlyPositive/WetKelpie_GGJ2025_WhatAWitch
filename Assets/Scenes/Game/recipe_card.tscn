@@ -1,20 +1,25 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdeojcmnv7naf"]
 
-[ext_resource type="Texture2D" uid="uid://dvabhohuknoea" path="res://Assets/Images/Programmer Art/ingredient_frogslegs.png" id="1_t1rnb"]
+[ext_resource type="Texture2D" uid="uid://glfxs6aqpyg" path="res://Assets/Images/frogs_leg_big.png" id="1_puler"]
 
 [node name="RecipeCard" type="HBoxContainer"]
+offset_right = 217.0
+offset_bottom = 45.0
 
 [node name="I0" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_t1rnb")
+texture = ExtResource("1_puler")
+expand_mode = 2
 
 [node name="I1" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_t1rnb")
+texture = ExtResource("1_puler")
+expand_mode = 2
 
 [node name="I2" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_t1rnb")
+texture = ExtResource("1_puler")
+expand_mode = 2
 
 [node name="Val" type="Label" parent="."]
 layout_mode = 2

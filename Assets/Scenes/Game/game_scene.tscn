@@ -131,6 +131,16 @@ layout_mode = 2
 layout_mode = 2
 alignment = 2
 
+[node name="Label" type="Label" parent="GameCanvas/Recipes/MarginContainer/CurrentRecipe"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
+text = "BONUS POINTS!"
+horizontal_alignment = 1
+
 [node name="PauseMenu" type="ColorRect" parent="GameCanvas"]
 visible = false
 z_index = 1

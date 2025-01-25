@@ -11,8 +11,8 @@ func spawn_rand_ingredient() -> void:
 func rand_ingredient() -> RecipeManager.Ingredients:
 	match (randi_range(0, 4)):
 		0: return RecipeManager.Ingredients.SNAKE_EYES
-		1: return RecipeManager.Ingredients.FROGS_LEGS
-		2: return RecipeManager.Ingredients.NIGHTSHADE
+		1: return RecipeManager.Ingredients.FROGS_LEG
+		2: return RecipeManager.Ingredients.DEATH_ROOT
 		3: return RecipeManager.Ingredients.TOADSTOOL
 		_: return RecipeManager.Ingredients.GEMSTONE
 
