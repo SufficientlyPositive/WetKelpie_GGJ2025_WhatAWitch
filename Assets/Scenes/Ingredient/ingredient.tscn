@@ -93,14 +93,22 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_027b2"]
 radius = 28.0179
 
-[node name="Ingredient" type="RigidBody2D" node_paths=PackedStringArray("sprite", "collision_area")]
+[node name="Ingredient" type="RigidBody2D" node_paths=PackedStringArray("sprite", "shadow", "collision_area")]
 collision_layer = 8
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_jate4")
 sprite = NodePath("IngredientSprite")
+shadow = NodePath("IngredientShadow")
 collision_area = NodePath("CircleCollision")
+
+[node name="IngredientShadow" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(5, 5)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_pdigh")
+animation = &"toadstool_tumble"
 
 [node name="IngredientSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.12, 0.12)

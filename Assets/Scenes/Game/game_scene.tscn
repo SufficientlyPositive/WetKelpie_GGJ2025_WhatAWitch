@@ -1,13 +1,17 @@
-[gd_scene load_steps=25 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=29 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_ui.gd" id="3_m2qu8"]
+[ext_resource type="Texture2D" uid="uid://c0gx8waw6vpf7" path="res://Assets/Images/Background Scroll.png" id="3_muc21"]
+[ext_resource type="FontFile" uid="uid://4au5igp3qy3w" path="res://Assets/Fonts/grandstander/Grandstander-Regular.ttf" id="4_1iwba"]
+[ext_resource type="Texture2D" uid="uid://cf8ar2m432m5h" path="res://Assets/Images/Background.png" id="4_cjyxc"]
 [ext_resource type="Texture2D" uid="uid://cae3xvn5knrs0" path="res://Assets/Images/Programmer Art/background_recipe_board.png" id="4_nwijb"]
 [ext_resource type="Texture2D" uid="uid://bjkpdbvd0x57s" path="res://Assets/Images/Programmer Art/background.png" id="4_tpxbo"]
 [ext_resource type="Theme" uid="uid://cny8msiucnohq" path="res://Assets/UI/Themes/menu_button_theme.tres" id="4_w2t0c"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/recipe_manager.gd" id="5_tkifj"]
 [ext_resource type="Texture2D" uid="uid://6jgh3wgkufuj" path="res://Assets/Images/Programmer Art/wood_plank.png" id="7_ri1rv"]
+[ext_resource type="FontFile" uid="uid://cwltetxo7ybuy" path="res://Assets/Fonts/grandstander/Grandstander-Bold.ttf" id="7_rud6v"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/player_character.gd" id="8_euk73"]
 [ext_resource type="Texture2D" uid="uid://cp36q5bxonfox" path="res://Assets/Images/Programmer Art/witch_sprite.png" id="8_m8um2"]
 [ext_resource type="PackedScene" uid="uid://chrrjtg6y86xk" path="res://Assets/Scenes/Enemy/enemy_control.tscn" id="9_37kig"]
@@ -73,6 +77,19 @@ script = ExtResource("3_m2qu8")
 pause_menu = NodePath("PauseMenu")
 
 [node name="BackBackground" type="TextureRect" parent="GameCanvas"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 313.0
+offset_right = -408.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_muc21")
+expand_mode = 1
+
+[node name="BackBackBackground" type="TextureRect" parent="GameCanvas"]
 modulate = Color(0.203692, 0.203701, 0.251622, 1)
 z_index = -1
 anchors_preset = 8
@@ -82,14 +99,31 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -960.0
 offset_top = -540.0
+offset_right = -587.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_tpxbo")
+expand_mode = 1
+
+[node name="BackBackBackground2" type="TextureRect" parent="GameCanvas"]
+modulate = Color(0.203692, 0.203701, 0.251622, 1)
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 553.0
+offset_top = -540.0
 offset_right = 960.0
 offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_tpxbo")
+expand_mode = 1
 
 [node name="Background" type="TextureRect" parent="GameCanvas"]
-modulate = Color(0.264133, 0.264173, 0.322223, 1)
 z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,7 +132,7 @@ offset_left = 372.0
 offset_right = -408.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_tpxbo")
+texture = ExtResource("4_cjyxc")
 expand_mode = 1
 
 [node name="CauldronContents" type="TextureRect" parent="GameCanvas"]
@@ -108,21 +142,44 @@ offset_right = 359.0
 offset_bottom = 941.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameCanvas/CauldronContents"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.5
+offset_top = -328.5
+offset_right = 140.5
+offset_bottom = 328.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="GameCanvas/CauldronContents/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1iwba")
+theme_override_font_sizes/font_size = 32
+text = "In your cauldron..."
+horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
+[node name="I0" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+size_flags_horizontal = 4
+expand_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
+[node name="I1" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+size_flags_horizontal = 4
+expand_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
+[node name="I2" type="TextureRect" parent="GameCanvas/CauldronContents/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+size_flags_horizontal = 4
+expand_mode = 2
 
 [node name="Recipes" type="NinePatchRect" parent="GameCanvas"]
 offset_left = 1528.0
@@ -151,6 +208,15 @@ theme_override_constants/margin_bottom = 60
 [node name="RecipeCards" type="VBoxContainer" parent="GameCanvas/Recipes/MarginContainer"]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="GameCanvas/Recipes/MarginContainer/RecipeCards"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_rud6v")
+theme_override_font_sizes/font_size = 30
+text = "RECIPES"
+horizontal_alignment = 1
+
 [node name="CurrentRecipe" type="VBoxContainer" parent="GameCanvas/Recipes/MarginContainer"]
 layout_mode = 2
 alignment = 2
@@ -159,8 +225,7 @@ alignment = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("7_rud6v")
 theme_override_font_sizes/font_size = 30
 text = "BONUS POINTS!"
 horizontal_alignment = 1

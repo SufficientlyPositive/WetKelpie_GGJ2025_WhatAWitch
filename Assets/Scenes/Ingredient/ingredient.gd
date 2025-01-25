@@ -40,6 +40,7 @@ var anim_status: SpriteAnims = SpriteAnims.STATIC
 var bubble_trapped: bool = false
 
 @export var sprite: AnimatedSprite2D
+@export var shadow: AnimatedSprite2D
 @export var collision_area: CollisionShape2D
 
 # Called when the node enters the scene tree for the first time.
@@ -75,5 +76,7 @@ func set_anim(anim: SpriteAnims) -> void:
 	match anim:
 		SpriteAnims.STATIC:
 			sprite.play(current_anim_static)
+			shadow.play(current_anim_static)
 		SpriteAnims.TUMBLE:
 			sprite.play(current_anim_tumble)
+			shadow.play(current_anim_tumble)
