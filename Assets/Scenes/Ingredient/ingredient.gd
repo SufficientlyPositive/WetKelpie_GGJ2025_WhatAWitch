@@ -34,7 +34,7 @@ const type_sprite_map = {
 
 var current_anim_static: String
 var current_anim_tumble: String
-var anim_status: SpriteAnims
+var anim_status: SpriteAnims = SpriteAnims.STATIC
 
 @export var sprite: AnimatedSprite2D
 
@@ -52,6 +52,7 @@ func calc_gravity_force(delta: float) -> Vector2:
 	return Vector2(0, (gravity - y_resist) * delta)
 
 func set_ingredient_type(type: RecipeManager.Ingredients) -> void:
+	print(type_sprite_map[type][SpriteAnims.STATIC])
 	current_anim_static = type_sprite_map[type][SpriteAnims.STATIC]
 	current_anim_tumble = type_sprite_map[type][SpriteAnims.TUMBLE]
 	set_anim(anim_status)
@@ -59,6 +60,6 @@ func set_ingredient_type(type: RecipeManager.Ingredients) -> void:
 func set_anim(anim: SpriteAnims) -> void:
 	match anim:
 		SpriteAnims.STATIC:
-			sprite.animation = current_anim_static
+			sprite.play(current_anim_static)
 		SpriteAnims.TUMBLE:
-			sprite.animation = current_anim_tumble
+			sprite.play(current_anim_tumble)

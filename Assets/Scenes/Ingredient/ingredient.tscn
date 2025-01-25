@@ -101,8 +101,7 @@ sprite = NodePath("IngredientSprite")
 
 [node name="IngredientSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pdigh")
-animation = &"toadstool_static"
-autoplay = "toadstool_static"
+animation = &"snake_eyes_static"
 
 [node name="CircleCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_027b2")
