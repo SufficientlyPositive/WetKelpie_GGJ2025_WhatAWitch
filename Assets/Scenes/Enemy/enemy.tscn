@@ -170,8 +170,8 @@ script = ExtResource("1_j46e7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_6o7el")
-animation = &"boom"
-frame_progress = 0.496186
+animation = &"fall"
+autoplay = "fall"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16

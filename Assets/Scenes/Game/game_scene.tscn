@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=25 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://6jgh3wgkufuj" path="res://Assets/Images/Programmer Art/wood_plank.png" id="7_ri1rv"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/player_character.gd" id="8_euk73"]
 [ext_resource type="Texture2D" uid="uid://cp36q5bxonfox" path="res://Assets/Images/Programmer Art/witch_sprite.png" id="8_m8um2"]
+[ext_resource type="PackedScene" uid="uid://chrrjtg6y86xk" path="res://Assets/Scenes/Enemy/enemy_control.tscn" id="9_37kig"]
 [ext_resource type="Texture2D" uid="uid://3elln2fcduhb" path="res://Assets/Images/Programmer Art/shield_sprite.png" id="9_e0jhf"]
 [ext_resource type="Texture2D" uid="uid://bkdqqkw1uo7oj" path="res://Assets/Images/Programmer Art/cauldron_sprite.png" id="10_n75eg"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/everything_killbox.gd" id="13_4tnrd"]
@@ -199,27 +200,31 @@ layout_mode = 2
 theme = ExtResource("4_w2t0c")
 text = "Quit to Menu"
 
-[node name="GameScene" type="Node2D" parent="." node_paths=PackedStringArray("player_character", "ingredient_spawner")]
+[node name="GameScene" type="Node2D" parent="." node_paths=PackedStringArray("player_character", "ingredient_spawner", "enemy_spawner")]
 process_mode = 1
 scale = Vector2(0.987282, 1)
 script = ExtResource("1_o8wbe")
 player_character = NodePath("PlayerCharacter")
 ingredient_spawner = NodePath("IngredientSpawner")
+enemy_spawner = NodePath("EnemySpawner")
 
-[node name="IngredientSpawner" type="Node2D" parent="GameScene" node_paths=PackedStringArray("spawning_area")]
-z_index = 2
-script = ExtResource("14_xe6ob")
-spawning_area = NodePath("IngredientSpawningArea")
-
-[node name="IngredientSpawningArea" type="Area2D" parent="GameScene/IngredientSpawner" node_paths=PackedStringArray("rectangle")]
+[node name="SpawningArea" type="Area2D" parent="GameScene" node_paths=PackedStringArray("rectangle")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("16_1au7j")
 rectangle = NodePath("Area")
 
-[node name="Area" type="CollisionShape2D" parent="GameScene/IngredientSpawner/IngredientSpawningArea"]
+[node name="Area" type="CollisionShape2D" parent="GameScene/SpawningArea"]
 position = Vector2(954.135, -30.5)
 shape = SubResource("RectangleShape2D_e542f")
+
+[node name="EnemySpawner" parent="GameScene" node_paths=PackedStringArray("spawning_area") instance=ExtResource("9_37kig")]
+spawning_area = NodePath("../SpawningArea")
+
+[node name="IngredientSpawner" type="Node2D" parent="GameScene" node_paths=PackedStringArray("spawning_area")]
+z_index = 2
+script = ExtResource("14_xe6ob")
+spawning_area = NodePath("../SpawningArea")
 
 [node name="BubbleControl" parent="GameScene" instance=ExtResource("15_44rxp")]
 z_index = 4
