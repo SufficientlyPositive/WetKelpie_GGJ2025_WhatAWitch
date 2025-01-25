@@ -3,6 +3,7 @@ extends RigidBody2D
 
 var type: RecipeManager.Ingredients
 const MAX_Y_VELOCITY: float = 300
+const MAX_Y_BUBBLE_VELOCITY: float = 100
 
 enum SpriteAnims {
 	STATIC,
@@ -36,6 +37,8 @@ var current_anim_static: String
 var current_anim_tumble: String
 var anim_status: SpriteAnims = SpriteAnims.STATIC
 
+var bubble_trapped: bool = false
+
 @export var sprite: AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
@@ -47,12 +50,21 @@ func _physics_process(delta: float) -> void:
 
 func calc_gravity_force(delta: float) -> Vector2:
 	const gravity = GameScene.GRAVITY * 10
-	var y_resist = ((self.linear_velocity.y + 10) / 300) * gravity
 	
+	var y_resist: float = 0
+	if not bubble_trapped:
+		y_resist = ((self.linear_velocity.y + 10) / MAX_Y_VELOCITY) * gravity
+	else:
+		y_resist = ((self.linear_velocity.y + 10) / MAX_Y_BUBBLE_VELOCITY) * gravity
+
 	return Vector2(0, (gravity - y_resist) * delta)
 
+func trap_in_bubble(bubble: Bubble) -> void:
+	self.reparent(bubble)
+	anim_status = SpriteAnims.STATIC
+	bubble_trapped = true
+
 func set_ingredient_type(type: RecipeManager.Ingredients) -> void:
-	print(type_sprite_map[type][SpriteAnims.STATIC])
 	current_anim_static = type_sprite_map[type][SpriteAnims.STATIC]
 	current_anim_tumble = type_sprite_map[type][SpriteAnims.TUMBLE]
 	set_anim(anim_status)

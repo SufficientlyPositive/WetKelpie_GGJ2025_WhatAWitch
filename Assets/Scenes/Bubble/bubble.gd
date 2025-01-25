@@ -6,8 +6,8 @@ var target : Node2D = null
 var status : String
 
 const momentum_loss_factor = 1.01 # Should be bigger than 1.0 to lose momentum, less than 1.0 would make the bubble accelerate
-const capturing_speed_factor = 0.5
-const capturing_distance_threshold = 0.1
+const capturing_speed_factor = 5.0 # 1.0
+const capturing_distance_threshold = 50
 const wobble_base : float = 7.0
 const wobble_momentum_gain : float = 20.0
 const wobble_momentum_loss : float = 1.01
@@ -33,8 +33,12 @@ func _process(delta):
 	match status:
 		"empty":
 			# Check for transition to catching state (Check collision)
-			if collision_area.has_overlapping_areas():
-				target = collision_area.get_overlapping_areas()[0].get_parent()
+			if collision_area.has_overlapping_bodies():
+				var first_area = collision_area.get_overlapping_bodies()[0]
+				if first_area is Ingredient:
+					target = first_area
+				else:
+					first_area.get_parent()
 				set_status("catching")
 			# Float up, lose momentum from player over time
 			velocity = velocity / momentum_loss_factor
@@ -47,6 +51,10 @@ func _process(delta):
 			if position.distance_to(target.position) < capturing_distance_threshold:
 				target.position = position
 				#TODO You should take complete control of the enemy's node (for position and rotation) here
+				if target is Ingredient:
+					(target as Ingredient).trap_in_bubble(self)
+				else:
+					target.reparent(self)
 				set_status("falling")
 		"falling":
 			# Check if we've reached ground, if so, transition to popping state

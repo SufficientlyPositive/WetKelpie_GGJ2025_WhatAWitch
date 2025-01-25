@@ -50,6 +50,15 @@ Jump={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="physics"
+2d_physics/layer_2="player hurt"
+2d_physics/layer_3="cauldron"
+2d_physics/layer_4="ingredients"
+2d_physics/layer_5="enemies (falling)"
+2d_physics/layer_6="bubble"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
