@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=24 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Assets/Scenes/Game/everything_killbox.gd" id="13_4tnrd"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/ingredient_spawner.gd" id="14_xe6ob"]
 [ext_resource type="PackedScene" uid="uid://bu3dpmmojpwr6" path="res://Assets/Scenes/Bubble/bubble_control.tscn" id="15_44rxp"]
+[ext_resource type="Script" path="res://Assets/Scenes/Game/spawning_area.gd" id="16_1au7j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5giy"]
 size = Vector2(1157, 103)
@@ -66,9 +67,8 @@ script = ExtResource("1_2dtmn")
 game_scene = NodePath("GameScene")
 game_canvas = NodePath("GameCanvas")
 
-[node name="GameCanvas" type="Node" parent="." node_paths=PackedStringArray("in_game_ui", "pause_menu")]
+[node name="GameCanvas" type="Node" parent="." node_paths=PackedStringArray("pause_menu")]
 script = ExtResource("3_m2qu8")
-in_game_ui = NodePath("")
 pause_menu = NodePath("PauseMenu")
 
 [node name="BackBackground" type="TextureRect" parent="GameCanvas"]
@@ -166,11 +166,12 @@ layout_mode = 2
 theme = ExtResource("4_w2t0c")
 text = "Quit to Menu"
 
-[node name="GameScene" type="Node2D" parent="." node_paths=PackedStringArray("player_character")]
+[node name="GameScene" type="Node2D" parent="." node_paths=PackedStringArray("player_character", "ingredient_spawner")]
 process_mode = 1
 scale = Vector2(0.987282, 1)
 script = ExtResource("1_o8wbe")
 player_character = NodePath("PlayerCharacter")
+ingredient_spawner = NodePath("IngredientSpawner")
 
 [node name="BubbleControl" parent="GameScene" instance=ExtResource("15_44rxp")]
 z_index = 1
@@ -230,13 +231,15 @@ script = ExtResource("13_4tnrd")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameScene/EverythingKillbox"]
 polygon = PackedVector2Array(-685.721, 1740, 2687.18, 1740, 2720.6, -567, -695.85, -567, -261.324, -261, 2214.16, -277, 2190.86, 1266, -227.898, 1274, -261.324, -261, -695.85, -572)
 
-[node name="IngredientSpawner" type="Node2D" parent="GameScene" node_paths=PackedStringArray("SpawningArea")]
+[node name="IngredientSpawner" type="Node2D" parent="GameScene" node_paths=PackedStringArray("spawning_area")]
 script = ExtResource("14_xe6ob")
-SpawningArea = NodePath("IngredientSpawningArea")
+spawning_area = NodePath("IngredientSpawningArea")
 
-[node name="IngredientSpawningArea" type="Area2D" parent="GameScene/IngredientSpawner"]
+[node name="IngredientSpawningArea" type="Area2D" parent="GameScene/IngredientSpawner" node_paths=PackedStringArray("rectangle")]
 collision_layer = 0
 collision_mask = 0
+script = ExtResource("16_1au7j")
+rectangle = NodePath("Area")
 
 [node name="Area" type="CollisionShape2D" parent="GameScene/IngredientSpawner/IngredientSpawningArea"]
 position = Vector2(954.135, -30.5)

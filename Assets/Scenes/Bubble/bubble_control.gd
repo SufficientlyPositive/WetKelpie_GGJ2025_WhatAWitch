@@ -15,8 +15,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("Jump") and player_reference.is_on_floor():
 		var acceleration : Vector2 = Vector2(player_reference.get_x_accel(delta), player_reference.get_y_accel(delta))
 		acceleration = acceleration * momentum_factors
-		print("Player jumped! Releasing Bubble with momentum: ", acceleration.x, " ", acceleration.y)
-		print()
+		#print("Player jumped! Releasing Bubble with momentum: ", acceleration.x, " ", acceleration.y)
 		var bubble = bubble_scene.instantiate()
 		add_child(bubble)
 		bubble.velocity = acceleration

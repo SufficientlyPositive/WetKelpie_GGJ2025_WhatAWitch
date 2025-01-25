@@ -93,10 +93,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_027b2"]
 radius = 28.0179
 
-[node name="Ingredient" type="RigidBody2D"]
+[node name="Ingredient" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
 collision_layer = 8
 gravity_scale = 0.0
 script = ExtResource("1_jate4")
+sprite = NodePath("IngredientSprite")
 
 [node name="IngredientSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pdigh")
