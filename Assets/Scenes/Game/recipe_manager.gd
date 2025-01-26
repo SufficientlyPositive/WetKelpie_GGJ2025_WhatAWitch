@@ -36,11 +36,12 @@ static func compare_ingredients_list(a: Array[Ingredients], b: Array[Ingredients
 class Recipe:
 	var ingredients : Array[Ingredients]
 	var value : int
-	var effect = null
+	var effect : String
 	
-	func _init(ing : Array[Ingredients], val : int) -> void:
+	func _init(ing : Array[Ingredients], val : int, eff : String = "") -> void:
 		ingredients = ing
 		value = val
+		effect = eff
 
 const current_recipe_points_mod: int = 5
 
