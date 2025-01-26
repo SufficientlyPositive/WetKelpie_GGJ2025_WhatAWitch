@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=38 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -72,6 +72,10 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_akx0u"]
+radius = 85.1827
+height = 276.667
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aalth"]
 size = Vector2(101.288, 46.25)
@@ -414,6 +418,12 @@ autoplay = "default"
 position = Vector2(104, 12.5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_4hrys")
+
+[node name="Area2D" type="Area2D" parent="GameScene/PlayerCharacter/ShieldNode"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameScene/PlayerCharacter/ShieldNode/Area2D"]
+position = Vector2(76.3194, -6.66667)
+shape = SubResource("CapsuleShape2D_akx0u")
 
 [node name="Cauldron" type="Area2D" parent="GameScene/PlayerCharacter"]
 z_index = -1
