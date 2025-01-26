@@ -13,13 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://6jgh3wgkufuj" path="res://Assets/Images/Programmer Art/wood_plank.png" id="7_ri1rv"]
 [ext_resource type="FontFile" uid="uid://cwltetxo7ybuy" path="res://Assets/Fonts/grandstander/Grandstander-Bold.ttf" id="7_rud6v"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/player_character.gd" id="8_euk73"]
-[ext_resource type="Texture2D" uid="uid://cp36q5bxonfox" path="res://Assets/Images/Programmer Art/witch_sprite.png" id="8_m8um2"]
 [ext_resource type="PackedScene" uid="uid://chrrjtg6y86xk" path="res://Assets/Scenes/Enemy/enemy_control.tscn" id="9_37kig"]
-[ext_resource type="Texture2D" uid="uid://3elln2fcduhb" path="res://Assets/Images/Programmer Art/shield_sprite.png" id="9_e0jhf"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/everything_killbox.gd" id="13_4tnrd"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/ingredient_spawner.gd" id="14_xe6ob"]
 [ext_resource type="PackedScene" uid="uid://bu3dpmmojpwr6" path="res://Assets/Scenes/Bubble/bubble_control.tscn" id="15_44rxp"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/spawning_area.gd" id="16_1au7j"]
+[ext_resource type="Texture2D" uid="uid://b7ptfg8dd55w6" path="res://Assets/Images/Witch Flying.png" id="18_dn552"]
+[ext_resource type="Texture2D" uid="uid://bku6mxyv0wa3u" path="res://Assets/Images/ShieldCat.png" id="19_8001e"]
 [ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/cauldron.png" id="20_ya0mu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia71d"]
@@ -38,7 +38,7 @@ size = Vector2(156.997, 20)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_m8um2")
+"texture": ExtResource("18_dn552")
 }],
 "loop": true,
 "name": &"default",
@@ -49,7 +49,7 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_e0jhf")
+"texture": ExtResource("19_8001e")
 }],
 "loop": true,
 "name": &"default",
@@ -57,7 +57,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aalth"]
-size = Vector2(180.509, 95)
+size = Vector2(211.439, 92.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5neq7"]
 animations = [{
@@ -353,22 +353,28 @@ collision_mask = 2
 polygon = PackedVector2Array(-52.4579, -6, -92.9732, 23, -82.8444, 77, 28.5726, 77, 45.7916, 52, 44.7787, 30, 26.5469, -39, 58.9591, -92, -33.2131, -113, -28.1487, -60)
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter"]
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_papvs")
 autoplay = "default"
 
 [node name="ShieldSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter"]
+position = Vector2(104.085, 12.5)
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_4hrys")
 
 [node name="Cauldron" type="Area2D" parent="GameScene/PlayerCharacter"]
+z_index = -1
 collision_layer = 4
 collision_mask = 56
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameScene/PlayerCharacter/Cauldron"]
-position = Vector2(-23.791, -16.25)
+position = Vector2(-19.3596, -15)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_aalth")
 
 [node name="CauldronSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/Cauldron"]
-position = Vector2(-64.3062, -17.5)
+position = Vector2(-74.429, -13.7646)
+rotation = -0.103554
 scale = Vector2(0.25, 0.23)
 sprite_frames = SubResource("SpriteFrames_5neq7")
 autoplay = "default"
