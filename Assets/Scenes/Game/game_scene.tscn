@@ -499,8 +499,10 @@ animation = &"cauldron_explodes"
 autoplay = "default"
 
 [node name="ShieldNode" type="Node2D" parent="GameScene/PlayerCharacter"]
+editor_description = "immortal"
 
 [node name="ShieldSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/ShieldNode"]
+editor_description = "immortal"
 position = Vector2(104, 12.5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_4hrys")

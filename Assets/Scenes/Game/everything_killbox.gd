@@ -11,7 +11,9 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_killbox_entered(body: Node2D) -> void:
-	if body is PlayerCharacter:
+	if body.editor_description == "immortal":
+		pass
+	elif body is PlayerCharacter:
 		pass
 	elif body is Ingredient:
 		body.queue_free()

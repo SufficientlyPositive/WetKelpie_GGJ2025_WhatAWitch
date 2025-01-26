@@ -150,6 +150,8 @@ func on_cauldron_body_entered(body: Node2D):
 				if RecipeManager.compare_ingredients_list(recipe_manager.current_recipe.ingredients, cauldron_contents) or RecipeManager.check_wildcard_list(cauldron_contents):
 					craft_potion_raw(recipe_manager.current_recipe.value * RecipeManager.current_recipe_points_mod, \
 						recipe_manager.current_recipe.effect)
+					if HP == 1:
+						restore_cat()
 					recipe_manager.pick_new_current_recipe()
 				else:
 					var recipe_index: int = get_recipe()
@@ -232,6 +234,13 @@ func set_character_direction(local_direction: Direction):
 				#if HP == 1:
 				#	shield_sprite.get_parent().scale.y = -stored_scale
 				#	shield_sprite.get_parent().rotation = 180
+
+func restore_cat() -> void:
+	HP = 2
+	shield_popping_velocity = Vector2(0.0, 0.0)
+	shield_sprite.get_parent().position = Vector2(0.0, 0.0)
+	shield_sprite.rotation = 0.0
+	shield_sprite.play("default")
 
 func take_damage() -> void:
 	HP -= 1
