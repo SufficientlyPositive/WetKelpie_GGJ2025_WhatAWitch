@@ -481,7 +481,6 @@ collision_mask = 56
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameScene/PlayerCharacter/Cauldron"]
 position = Vector2(-80.8705, -40.8813)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_aalth")
 
 [node name="CauldronSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/Cauldron"]
