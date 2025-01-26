@@ -34,4 +34,4 @@ func change_points(add_val: int) -> void:
 	change_points_ui(points)
 
 func change_points_ui(new_val: int) -> void:
-	pass
+	$GameCanvas/CauldronUI/Contents/Score.text = str(points)
