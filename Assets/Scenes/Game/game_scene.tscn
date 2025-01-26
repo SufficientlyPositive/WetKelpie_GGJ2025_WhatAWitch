@@ -388,6 +388,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.392157)
 
+[node name="Controls" type="Label" parent="GameCanvas/PauseMenu"]
+layout_mode = 0
+offset_left = 858.0
+offset_top = 649.0
+offset_right = 1088.0
+offset_bottom = 770.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "A / Arrow Left : Move Left
+D / Arrow Right : Move Right
+W / Arrow Up : Jump
+Space : Create Bubble"
+
 [node name="PauseMenuButtons" type="VBoxContainer" parent="GameCanvas/PauseMenu"]
 layout_mode = 1
 anchors_preset = 8
