@@ -20,6 +20,12 @@ var ingredient_sprites = [
 enum Direction {LEFT, RIGHT}
 enum CauldronState {NOT_ENOUGH_ITEMS, FINE, NEEDS_EXPLODE}
 
+var HP : int = 2
+var invincibility_left : float = 0.0
+var shield_popping_velocity : Vector2
+
+signal game_over(value: bool)
+
 signal change_points_by(value: int)
 
 const jump_force: float = 350
@@ -35,6 +41,7 @@ var cauldron_contents : Array[RecipeManager.Ingredients]
 var cauldron_exploding: bool = false
 
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
+@onready var player_hurtbox: Area2D = $PlayerHurtBox
 @onready var shield_sprite: AnimatedSprite2D = $ShieldNode.get_child(0)
 @onready var cauldron: Area2D = $Cauldron
 var accum_delta = 0.0
@@ -68,6 +75,7 @@ func _physics_process(delta: float):
 	accum_delta = fmod(accum_delta + 2.0*delta, 2.0*PI)
 	floating_animation()
 	tilting_animation()
+	check_damage(delta)
 	
 	if not cauldron_exploding:
 		var accel: Vector2 = Vector2(get_x_accel(delta), get_y_accel(delta))
@@ -216,10 +224,44 @@ func set_character_direction(local_direction: Direction):
 		Direction.LEFT: 
 			self.scale.y = -stored_scale
 			self.rotation_degrees = 180
+			#if HP == 1:
+			#	shield_sprite.get_parent().scale.y = stored_scale
+			#	shield_sprite.get_parent().rotation = 0
 		Direction.RIGHT:
 			self.scale.y = stored_scale
 			self.rotation = 0
+			#if HP == 1:
+			#	shield_sprite.get_parent().scale.y = -stored_scale
+			#	shield_sprite.get_parent().rotation = 180
 
+func take_damage() -> void:
+	HP -= 1
+	if HP == 1:
+		#kill the kitty
+		shield_popping_velocity = (Vector2(randf()*0.2, -1.0)*300.0)
+		shield_sprite.play("dead")
+			# then play gravity on the kitty every frame, you can do this by checking HP every frame
+			#shield_popping_velocity = shield_popping_velocity + (Vector2(0.0, 1.0) * 500.0) * delta
+			#shield_node.position += shield_popping_velocity * delta
+		invincibility_left = 5.0
+	else:
+		# Game over
+		game_over.emit(true)
+
+func check_damage(delta) -> void:
+	if HP == 1:
+		shield_popping_velocity = shield_popping_velocity + (Vector2(0.0, 1.0) * 500.0) * delta
+		shield_sprite.get_parent().position += shield_popping_velocity * delta
+		shield_sprite.rotation += delta
+	if invincibility_left < 0.5:
+		player_sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		var overlapping_bodies = player_hurtbox.get_overlapping_bodies()
+		if (overlapping_bodies).size() > 0:
+			take_damage()
+	else:
+		#sprite.modulate = 0.5*(1.0 + sin(100.0*accum_delta))*Color(1.0, 1.0, 1.0, 1.0)
+		player_sprite.modulate = 0.5*(1.0 + sin(10.0*accum_delta))*Color(1.0, 1.0, 1.0, 1.0)
+		invincibility_left -= delta
 
 func _on_player_sprite_animation_finished() -> void:
 	cauldron_exploding = false

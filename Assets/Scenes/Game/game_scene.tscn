@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=38 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bku6mxyv0wa3u" path="res://Assets/Images/ShieldCat.png" id="19_8001e"]
 [ext_resource type="Texture2D" uid="uid://dxqoyk4scnh8f" path="res://Assets/Images/Witch Kablooie.png" id="19_osicn"]
 [ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/cauldron.png" id="20_ya0mu"]
+[ext_resource type="Texture2D" uid="uid://efuwl0pkk8h4" path="res://Assets/Images/ShieldCat Used.png" id="21_50ed0"]
 [ext_resource type="Texture2D" uid="uid://b2xm24udpqdgr" path="res://Assets/Images/Cauldron Det 1.png" id="21_64k8u"]
 [ext_resource type="Texture2D" uid="uid://dqrolxdmt4b0m" path="res://Assets/Images/Cauldron Det 2.png" id="22_mscwv"]
 [ext_resource type="Texture2D" uid="uid://b16ej5f053lfv" path="res://Assets/Images/Cauldron Det 3.png" id="23_5vt8b"]
@@ -64,6 +65,14 @@ animations = [{
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4hrys"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_50ed0")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("19_8001e")
@@ -397,7 +406,7 @@ shape = SubResource("RectangleShape2D_hbfva")
 
 [node name="PlayerHurtBox" type="Area2D" parent="GameScene/PlayerCharacter"]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 16
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameScene/PlayerCharacter/PlayerHurtBox"]
 polygon = PackedVector2Array(-11.13, -26.25, 1.53101, -25, -7.33179, -22.5, -13.2244, -15.4703, -14.9283, -11.25, -19.9928, -10, -21.2589, -3.75, -46.5809, 10, -59.2419, 8.75, -68.1046, 15, -70.6368, 21.25, -70.6368, 25, -71.903, 27.5, -71.903, 31.25, -69.3707, 35, -64.3063, 36.25, -59.2419, 35, -56.7097, 40, -52.9114, 42.5, -55.4436, 43.75, -65.5724, 45, -68.1046, 50, -68.1046, 66.25, -46.5809, 71.25, -11.13, 71.25, 21.7886, 57.5, 30.7256, 61.6082, 61.0378, 57.5, 73.6989, 51.25, 90.1581, 50, 101.553, 68.75, 110.416, 68.75, 114.223, 57.8155, 115.48, 37.5, 124.343, 32.5, 124.343, 28.75, 107.884, 22.5, 96.4886, 30, 88.8921, 32.5, 90.1581, 25, 78.7632, 6.25, 80.0293, 1.25, 77.4971, -6.25, 76.231, -17.5, 68.6344, -25, 78.7632, -31.25, 85.0938, -42.5, 88.8921, -60, 86.3599, -71.25, 101.553, -78.75, 114.214, -88.75, 114.214, -96.25, 95.2225, -106.25, 67.3683, -105, 30.6514, -140, 5.32935, -136.25, -11.13, -117.5, -28.8555, -116.25, -52.9114, -92.5, -51.6453, -90, -25.0571, -97.5, -13.6622, -86.25, -36.452, -73.75, -44.0487, -63.75, -42.7826, -57.5, -35.186, -52.5, -26.3232, -53.75, -26.3232, -43.75, -21.2589, -33.75)
@@ -414,6 +423,7 @@ autoplay = "default"
 position = Vector2(104, 12.5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_4hrys")
+autoplay = "default"
 
 [node name="Cauldron" type="Area2D" parent="GameScene/PlayerCharacter"]
 z_index = -1
