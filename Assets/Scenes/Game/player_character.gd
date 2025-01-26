@@ -7,6 +7,7 @@ var ingredient_sprites = [
 	preload("res://Assets/Images/death_root_big.png"),
 	preload("res://Assets/Images/toadstool_big.png"),
 	preload("res://Assets/Images/gemstone_big.png"),
+	preload("res://Assets/Images/Elouan Art/T_Haggis_Blow_01.png")
 ]
 
 enum Direction {LEFT, RIGHT}
@@ -84,7 +85,7 @@ func on_cauldron_body_entered(body: Node2D):
 			explode_cauldron()
 			body.queue_free()
 	elif body is Ingredient:
-		self.cauldron_contents.append((body as Ingredient).type)
+		add_ingredient_to_cauldron((body as Ingredient).type)
 		success = true
 	else:
 		var par: Node = body.get_parent()
@@ -95,18 +96,16 @@ func on_cauldron_body_entered(body: Node2D):
 				bubble.set_status("popping")
 				body = target
 				if target is Enemy:
-					self.cauldron_contents.append(RecipeManager.Ingredients.BUBBLED_ENEMY)
+					add_ingredient_to_cauldron(RecipeManager.Ingredients.BUBBLED_ENEMY)
 					success = true
 				elif target is Ingredient:
-					self.cauldron_contents.append((target as Ingredient).type)
+					add_ingredient_to_cauldron((target as Ingredient).type)
 					success = true
 				else:
 					print("wtf else are you putting in this dang cauldron?!")
 					explode_cauldron()
 	
-	if success:
-		update_cauldron_ui()
-		
+	if success:		
 		match(get_cauldron_action()):
 			CauldronState.FINE: 
 				if RecipeManager.compare_ingredients_list(recipe_manager.current_recipe.ingredients, cauldron_contents):
@@ -136,8 +135,13 @@ func craft_potion_raw(value: int, effect) -> void:
 func craft_potion(recipe: RecipeManager.Recipe):
 	craft_potion_raw(recipe.value, recipe.effect)
 
+func add_ingredient_to_cauldron(ingredient: RecipeManager.Ingredients):
+	self.cauldron_contents.append(ingredient)
+	update_cauldron_ui()
+
 func cauldron_clear():
 	self.cauldron_contents.clear()
+	update_cauldron_ui()
 
 func get_cauldron_action() -> CauldronState:
 	var n_ingredients = cauldron_contents.size()
