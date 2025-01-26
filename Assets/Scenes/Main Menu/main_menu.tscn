@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://b536i7rsodvw0"]
+[gd_scene load_steps=18 format=3 uid="uid://b536i7rsodvw0"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Main Menu/main_menu.gd" id="1_ufqnc"]
 [ext_resource type="Theme" uid="uid://cny8msiucnohq" path="res://Assets/UI/Themes/menu_button_theme.tres" id="2_6lp63"]
 [ext_resource type="Texture2D" uid="uid://cf8ar2m432m5h" path="res://Assets/Images/Background.png" id="2_i0isg"]
 [ext_resource type="Texture2D" uid="uid://c0gx8waw6vpf7" path="res://Assets/Images/Background Scroll.png" id="2_mofw0"]
 [ext_resource type="Texture2D" uid="uid://b47c5qi2y3yqv" path="res://Assets/Images/Credit Scroll 2.png" id="3_dtb3p"]
-[ext_resource type="FontFile" uid="uid://cwltetxo7ybuy" path="res://Assets/Fonts/grandstander/Grandstander-Bold.ttf" id="4_fbajt"]
 [ext_resource type="Texture2D" uid="uid://ch58wgpfdf145" path="res://Assets/Images/Start Button 2.png" id="5_4ybx2"]
 [ext_resource type="Texture2D" uid="uid://bl2l80ck4pvsj" path="res://Assets/Images/Start Button.png" id="5_oetgk"]
 [ext_resource type="Texture2D" uid="uid://bbfq4g235f2nv" path="res://Assets/Images/Quit Button 2.png" id="6_iuggp"]
@@ -107,29 +106,6 @@ texture = ExtResource("2_i0isg")
 expand_mode = 4
 stretch_mode = 4
 
-[node name="TitleLabel" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1008.0
-offset_top = -496.0
-offset_right = 189.0
-offset_bottom = 261.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 40
-theme_override_fonts/font = ExtResource("4_fbajt")
-theme_override_font_sizes/font_size = 250
-text = "WHAT A
-     WITCH!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="CreditsShadow" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.666667)
 layout_mode = 0
@@ -157,7 +133,16 @@ offset_bottom = 2757.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("12_mq030")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="GameLogoShadow" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.666667)
+layout_mode = 0
+offset_left = 7.0
+offset_top = 9.0
+offset_right = 1007.0
+offset_bottom = 1009.0
+texture = ExtResource("12_ab4um")
+
+[node name="GameLogo" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
