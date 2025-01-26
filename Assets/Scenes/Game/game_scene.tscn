@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://b7ptfg8dd55w6" path="res://Assets/Images/Witch Flying.png" id="18_dn552"]
 [ext_resource type="Texture2D" uid="uid://bku6mxyv0wa3u" path="res://Assets/Images/ShieldCat.png" id="19_8001e"]
 [ext_resource type="Texture2D" uid="uid://dxqoyk4scnh8f" path="res://Assets/Images/Witch Kablooie.png" id="19_osicn"]
-[ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/cauldron.png" id="20_ya0mu"]
+[ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/Cauldron.png" id="20_ya0mu"]
 [ext_resource type="Texture2D" uid="uid://b2xm24udpqdgr" path="res://Assets/Images/Cauldron Det 1.png" id="21_64k8u"]
 [ext_resource type="Texture2D" uid="uid://dqrolxdmt4b0m" path="res://Assets/Images/Cauldron Det 2.png" id="22_mscwv"]
 [ext_resource type="Texture2D" uid="uid://b16ej5f053lfv" path="res://Assets/Images/Cauldron Det 3.png" id="23_5vt8b"]
@@ -74,7 +74,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aalth"]
-size = Vector2(96.1513, 45.8654)
+size = Vector2(101.288, 46.25)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5neq7"]
 animations = [{
@@ -421,8 +421,7 @@ collision_layer = 4
 collision_mask = 56
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameScene/PlayerCharacter/Cauldron"]
-position = Vector2(-77.0034, -38.3173)
-scale = Vector2(1, 1)
+position = Vector2(-74.4348, -38.125)
 shape = SubResource("RectangleShape2D_aalth")
 
 [node name="CauldronSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/Cauldron"]
