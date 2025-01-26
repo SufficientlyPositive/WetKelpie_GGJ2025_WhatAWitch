@@ -143,7 +143,6 @@ func on_cauldron_body_entered(body: Node2D):
 					add_ingredient_to_cauldron((target as Ingredient).type)
 					success = true
 				else:
-					print("wtf else are you putting in this dang cauldron?!")
 					explode_cauldron()
 	
 	if success:
