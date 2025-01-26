@@ -398,7 +398,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "A / Arrow Left : Move Left
 D / Arrow Right : Move Right
 W / Arrow Up : Jump
-Space : Create Bubble"
+B / Space : Create Bubble"
 
 [node name="PauseMenuButtons" type="VBoxContainer" parent="GameCanvas/PauseMenu"]
 layout_mode = 1
