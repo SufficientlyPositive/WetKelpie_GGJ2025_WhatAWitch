@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://pwckxe3up1um"
+path="res://.godot/imported/The Path of the Goblin King v2.mp3-4fb730e71dfb08f97da6cdcf496e52b2.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/The Path of the Goblin King v2.mp3"
+dest_files=["res://.godot/imported/The Path of the Goblin King v2.mp3-4fb730e71dfb08f97da6cdcf496e52b2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

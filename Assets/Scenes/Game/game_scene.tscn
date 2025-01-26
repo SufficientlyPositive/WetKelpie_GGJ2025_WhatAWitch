@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=41 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://dqrolxdmt4b0m" path="res://Assets/Images/Cauldron Det 2.png" id="22_mscwv"]
 [ext_resource type="Texture2D" uid="uid://b16ej5f053lfv" path="res://Assets/Images/Cauldron Det 3.png" id="23_5vt8b"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/cauldron_explosion.gd" id="24_26185"]
+[ext_resource type="AudioStream" uid="uid://pwckxe3up1um" path="res://Assets/Audio/The Path of the Goblin King v2.mp3" id="31_4r5c0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia71d"]
 bg_color = Color(0.298039, 0.0509804, 0.054902, 1)
@@ -591,6 +592,11 @@ script = ExtResource("13_4tnrd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameScene/EverythingKillbox"]
 polygon = PackedVector2Array(-685.721, 1740, 2687.18, 1740, 2720.6, -567, -695.85, -567, -261.324, -261, 2214.16, -277, 2190.86, 1266, -227.898, 1274, -261.324, -261, -695.85, -572)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("31_4r5c0")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/ContinueButton" to="." method="toggle_pause"]
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/QuitToMenuButton" to="." method="quit_to_main_menu"]
