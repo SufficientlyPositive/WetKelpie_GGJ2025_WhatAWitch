@@ -35,6 +35,8 @@ var broom_tilt = 0.0
 
 @onready var stored_scale = self.scale.x
 
+@onready var audio_player: AudioStreamPlayer2D = $PlayerAudio
+
 func update_cauldron_ui():
 	for i in range(3):
 		var box = %CauldronUI/Contents.get_node("I" + str(i))
