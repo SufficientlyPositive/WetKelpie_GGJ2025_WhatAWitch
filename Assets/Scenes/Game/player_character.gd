@@ -148,7 +148,7 @@ func on_cauldron_body_entered(body: Node2D):
 	if success:
 		match(get_cauldron_action()):
 			CauldronState.FINE: 
-				if RecipeManager.compare_ingredients_list(recipe_manager.current_recipe.ingredients, cauldron_contents):
+				if RecipeManager.compare_ingredients_list(recipe_manager.current_recipe.ingredients, cauldron_contents) or RecipeManager.check_wildcard_list(cauldron_contents):
 					craft_potion_raw(recipe_manager.current_recipe.value * RecipeManager.current_recipe_points_mod, \
 						recipe_manager.current_recipe.effect)
 					recipe_manager.pick_new_current_recipe()
