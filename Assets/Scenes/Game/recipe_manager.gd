@@ -45,7 +45,6 @@ class Recipe:
 const current_recipe_points_mod: int = 5
 
 var valid_recipes : Array[Recipe] = [
-	
 	Recipe.new([
 			Ingredients.FROGS_LEG,
 			Ingredients.DEATH_ROOT,
