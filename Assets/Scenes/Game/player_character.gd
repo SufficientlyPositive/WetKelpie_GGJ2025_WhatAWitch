@@ -1,6 +1,13 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
+const audio_dictionary = {
+	"Explosion": [preload("res://Assets/Audio/CauldronExplode00.wav")],
+	"Cackle": [preload("res://Assets/Audio/WitchGiggle00.wav"), preload("res://Assets/Audio/WitchGiggle01.wav"), preload("res://Assets/Audio/WitchGiggle02.wav")],
+	"Plop": [preload("res://Assets/Audio/CauldronSplash00.wav")],
+	"Potion Create": [preload("res://Assets/Audio/PotionSucces00.wav")],
+}
+
 var ingredient_sprites = [
 	preload("res://Assets/Images/snake_eyes_big.png"),
 	preload("res://Assets/Images/frogs_leg_big.png"),
@@ -154,11 +161,20 @@ func explode_cauldron():
 	cauldron_explosion.explode()
 	cauldron_exploding = true
 	player_sprite.play("cauldron_explodes")
+	
+	audio_player.stream = audio_dictionary["Explosion"][0]
+	audio_player.pitch_scale = randf_range(0.95, 1.05)
+	audio_player.play()
+	
 	change_points_by.emit(-50)
 
 func craft_potion_raw(value: int, effect) -> void:
 	cauldron_clear()
-	print("Potion crafted with value: " + str(value))
+	
+	audio_player.stream = audio_dictionary["Potion Create"][0]
+	audio_player.pitch_scale = randf_range(0.90, 1.0)
+	audio_player.play()
+	
 	change_points_by.emit(value)
 
 func craft_potion(recipe: RecipeManager.Recipe):
@@ -166,6 +182,11 @@ func craft_potion(recipe: RecipeManager.Recipe):
 
 func add_ingredient_to_cauldron(ingredient: RecipeManager.Ingredients):
 	self.cauldron_contents.append(ingredient)
+	
+	audio_player.stream = audio_dictionary["Plop"][0]
+	audio_player.pitch_scale = randf_range(0.95, 1.05)
+	audio_player.play()
+	
 	update_cauldron_ui()
 
 func cauldron_clear():
