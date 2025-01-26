@@ -46,6 +46,31 @@ const current_recipe_points_mod: int = 5
 
 var valid_recipes : Array[Recipe] = [
 	Recipe.new([
+			Ingredients.SNAKE_EYES,
+			Ingredients.SNAKE_EYES,
+			Ingredients.SNAKE_EYES],
+			200),
+	Recipe.new([
+			Ingredients.FROGS_LEG,
+			Ingredients.FROGS_LEG,
+			Ingredients.FROGS_LEG],
+			200),
+	Recipe.new([
+			Ingredients.DEATH_ROOT,
+			Ingredients.DEATH_ROOT,
+			Ingredients.DEATH_ROOT],
+			200),
+	Recipe.new([
+			Ingredients.TOADSTOOL,
+			Ingredients.TOADSTOOL,
+			Ingredients.TOADSTOOL],
+			200),
+	Recipe.new([
+			Ingredients.GEMSTONE,
+			Ingredients.GEMSTONE,
+			Ingredients.GEMSTONE],
+			200),
+	Recipe.new([
 			Ingredients.FROGS_LEG,
 			Ingredients.DEATH_ROOT,
 			Ingredients.SNAKE_EYES],
@@ -98,7 +123,7 @@ func pick_new_current_recipe():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for r in valid_recipes:
+	for r in valid_recipes.slice(5):
 		var rc = recipe_card.instantiate()
 		for i in range(3):
 			rc.get_node("I" + str(i)).texture = ingredient_sprites[int(r.ingredients[i])]
