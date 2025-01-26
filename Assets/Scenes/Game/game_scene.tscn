@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=42 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://4au5igp3qy3w" path="res://Assets/Fonts/grandstander/Grandstander-Regular.ttf" id="10_e0v8r"]
 [ext_resource type="Texture2D" uid="uid://orw34kbv4e0n" path="res://Assets/Images/Haggis Bubbled.png" id="11_qds3o"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/everything_killbox.gd" id="13_4tnrd"]
+[ext_resource type="Texture2D" uid="uid://b2wq0xvh2m476" path="res://Assets/Images/Game Over.png" id="13_cfpxs"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/ingredient_spawner.gd" id="14_xe6ob"]
 [ext_resource type="PackedScene" uid="uid://bu3dpmmojpwr6" path="res://Assets/Scenes/Bubble/bubble_control.tscn" id="15_44rxp"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/spawning_area.gd" id="16_1au7j"]
@@ -444,13 +445,47 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.392157)
 
+[node name="GameOverShadow" type="TextureRect" parent="GameCanvas/GameOverMenu"]
+modulate = Color(0, 0, 0, 0.666667)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -431.5
+offset_top = -41.0
+offset_right = 417.5
+offset_bottom = 808.0
+grow_horizontal = 2
+texture = ExtResource("13_cfpxs")
+expand_mode = 1
+
+[node name="GameOver" type="TextureRect" parent="GameCanvas/GameOverMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -424.5
+offset_top = -64.0
+offset_right = 424.5
+offset_bottom = 785.0
+grow_horizontal = 2
+texture = ExtResource("13_cfpxs")
+expand_mode = 1
+
 [node name="QuitToMenuButton" type="Button" parent="GameCanvas/GameOverMenu"]
 custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-offset_left = 710.0
-offset_top = 526.0
-offset_right = 1210.0
-offset_bottom = 606.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = 128.0
+offset_right = 250.0
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("4_w2t0c")
 
 [node name="Label" type="Label" parent="GameCanvas/GameOverMenu/QuitToMenuButton"]
@@ -461,24 +496,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "QUIT TO MENU"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="GameOverText" type="Label" parent="GameCanvas/GameOverMenu"]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -359.0
-offset_top = 331.0
-offset_right = 360.0
-offset_bottom = -586.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("7_rud6v")
-theme_override_font_sizes/font_size = 144
-text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 2
 
