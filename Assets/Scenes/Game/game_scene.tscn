@@ -408,8 +408,10 @@ sprite_frames = SubResource("SpriteFrames_papvs")
 animation = &"cauldron_explodes"
 autoplay = "default"
 
-[node name="ShieldSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter"]
-position = Vector2(104.085, 12.5)
+[node name="ShieldNode" type="Node2D" parent="GameScene/PlayerCharacter"]
+
+[node name="ShieldSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/ShieldNode"]
+position = Vector2(104, 12.5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_4hrys")
 
