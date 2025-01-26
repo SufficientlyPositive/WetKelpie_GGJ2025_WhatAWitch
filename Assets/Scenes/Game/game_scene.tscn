@@ -83,7 +83,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aalth"]
-size = Vector2(101.288, 46.25)
+size = Vector2(88.3025, 40.7371)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5neq7"]
 animations = [{
@@ -480,7 +480,8 @@ collision_layer = 4
 collision_mask = 56
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameScene/PlayerCharacter/Cauldron"]
-position = Vector2(-74.4348, -38.125)
+position = Vector2(-80.8705, -40.8813)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_aalth")
 
 [node name="CauldronSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/Cauldron"]
