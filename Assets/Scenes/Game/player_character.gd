@@ -25,6 +25,9 @@ const cauldron_item_throttle: float = 0.5
 var cauldron_time_since_item: float = 0
 var cauldron_contents : Array[RecipeManager.Ingredients]
 @onready var cauldron_explosion: CauldronExplosionAnimation = $Cauldron/CauldronExplosion
+var cauldron_exploding: bool = false
+
+@onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 
 @onready var stored_scale = self.scale.x
 
@@ -49,21 +52,25 @@ func _process(_delta: float):
 
 func _physics_process(delta: float):
 	cauldron_time_since_item += delta
-	var accel: Vector2 = Vector2(get_x_accel(delta), get_y_accel(delta))
 	
-	if accel.x < 0:
-		direction = Direction.LEFT
-		if velocity.x > 0:
-			accel.x -= GameScene.FRICTION_FLAT * delta
-	elif accel.x > 0:
-		direction = Direction.RIGHT
-		if velocity.x < 0:
-			accel.x += GameScene.FRICTION_FLAT * delta
-	
-	self.velocity += accel
-	self.velocity.x = clampf(self.velocity.x, -max_speed, max_speed)
-	self.velocity.x *= (1 - GameScene.FRICTION_COEFF)
-	move_and_slide()
+	if not cauldron_exploding:
+		var accel: Vector2 = Vector2(get_x_accel(delta), get_y_accel(delta))
+		
+		if accel.x < 0:
+			direction = Direction.LEFT
+			if velocity.x > 0:
+				accel.x -= GameScene.FRICTION_FLAT * delta
+		elif accel.x > 0:
+			direction = Direction.RIGHT
+			if velocity.x < 0:
+				accel.x += GameScene.FRICTION_FLAT * delta
+		
+		self.velocity += accel
+		self.velocity.x = clampf(self.velocity.x, -max_speed, max_speed)
+		self.velocity.x *= (1 - GameScene.FRICTION_COEFF)
+		move_and_slide()
+	else:
+		self.velocity = Vector2(0, 0)
 
 # movement may be floaty, 
 func get_x_accel(delta: float) -> float:
@@ -136,6 +143,8 @@ func on_cauldron_body_entered(body: Node2D):
 func explode_cauldron():
 	cauldron_clear()
 	cauldron_explosion.explode()
+	cauldron_exploding = true
+	player_sprite.play("cauldron_explodes")
 	change_points_by.emit(-100)
 
 func craft_potion_raw(value: int, effect) -> void:
@@ -180,3 +189,8 @@ func set_character_direction(local_direction: Direction):
 		Direction.RIGHT:
 			self.scale.y = stored_scale
 			self.rotation = 0
+
+
+func _on_player_sprite_animation_finished() -> void:
+	cauldron_exploding = false
+	player_sprite.play("default")

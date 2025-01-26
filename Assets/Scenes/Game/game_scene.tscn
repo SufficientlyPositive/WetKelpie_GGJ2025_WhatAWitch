@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=37 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -18,8 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://bu3dpmmojpwr6" path="res://Assets/Scenes/Bubble/bubble_control.tscn" id="15_44rxp"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/spawning_area.gd" id="16_1au7j"]
 [ext_resource type="Texture2D" uid="uid://drvbaoed44owq" path="res://Assets/Images/Platform.png" id="16_k7shc"]
+[ext_resource type="Texture2D" uid="uid://cmgeugs6upte6" path="res://Assets/Images/Witch Slimeblooie.png" id="18_7bvry"]
 [ext_resource type="Texture2D" uid="uid://b7ptfg8dd55w6" path="res://Assets/Images/Witch Flying.png" id="18_dn552"]
 [ext_resource type="Texture2D" uid="uid://bku6mxyv0wa3u" path="res://Assets/Images/ShieldCat.png" id="19_8001e"]
+[ext_resource type="Texture2D" uid="uid://dxqoyk4scnh8f" path="res://Assets/Images/Witch Kablooie.png" id="19_osicn"]
 [ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/cauldron.png" id="20_ya0mu"]
 [ext_resource type="Texture2D" uid="uid://b2xm24udpqdgr" path="res://Assets/Images/Cauldron Det 1.png" id="21_64k8u"]
 [ext_resource type="Texture2D" uid="uid://dqrolxdmt4b0m" path="res://Assets/Images/Cauldron Det 2.png" id="22_mscwv"]
@@ -40,6 +42,17 @@ size = Vector2(156.997, 27.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_papvs"]
 animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": ExtResource("18_7bvry")
+}, {
+"duration": 3.0,
+"texture": ExtResource("19_osicn")
+}],
+"loop": false,
+"name": &"cauldron_explodes",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("18_dn552")
@@ -392,6 +405,7 @@ polygon = PackedVector2Array(-11.13, -26.25, 1.53101, -25, -7.33179, -22.5, -13.
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter"]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_papvs")
+animation = &"cauldron_explodes"
 autoplay = "default"
 
 [node name="ShieldSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter"]
@@ -433,6 +447,7 @@ polygon = PackedVector2Array(-685.721, 1740, 2687.18, 1740, 2720.6, -567, -695.8
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/ContinueButton" to="." method="toggle_pause"]
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/QuitToMenuButton" to="." method="quit_to_main_menu"]
 [connection signal="change_points_by" from="GameScene/PlayerCharacter" to="." method="change_points"]
+[connection signal="animation_finished" from="GameScene/PlayerCharacter/PlayerSprite" to="GameScene/PlayerCharacter" method="_on_player_sprite_animation_finished"]
 [connection signal="area_entered" from="GameScene/PlayerCharacter/Cauldron" to="GameScene/PlayerCharacter" method="on_cauldron_body_entered"]
 [connection signal="body_entered" from="GameScene/PlayerCharacter/Cauldron" to="GameScene/PlayerCharacter" method="on_cauldron_body_entered"]
 [connection signal="animation_finished" from="GameScene/PlayerCharacter/Cauldron/CauldronExplosion" to="GameScene/PlayerCharacter/Cauldron/CauldronExplosion" method="on_animation_finished"]
