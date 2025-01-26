@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bat1saymbcf24"
-path="res://.godot/imported/Cauldron.png-d87dd5d3a9867b2dc74773838ba04da3.ctex"
+uid="uid://eeexl2qfv6p1"
+path="res://.godot/imported/Wet_Kelpie_logo_revised.png-1a79bc1f74d78053cc35480568f8b67a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Cauldron.png"
-dest_files=["res://.godot/imported/Cauldron.png-d87dd5d3a9867b2dc74773838ba04da3.ctex"]
+source_file="res://Assets/Images/Wet_Kelpie_logo_revised.png"
+dest_files=["res://.godot/imported/Wet_Kelpie_logo_revised.png-1a79bc1f74d78053cc35480568f8b67a.ctex"]
 
 [params]
 
