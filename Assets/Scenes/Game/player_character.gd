@@ -7,6 +7,7 @@ const audio_dictionary = {
 	"Plop": [preload("res://Assets/Audio/CauldronSplash00.wav")],
 	"Potion Create": [preload("res://Assets/Audio/PotionSucces00.wav")],
 }
+var giggling : float = 0.0
 
 var ingredient_sprites = [
 	preload("res://Assets/Images/snake_eyes_big.png"),
@@ -63,6 +64,11 @@ func update_cauldron_ui():
 @onready var recipe_manager: RecipeManager = %Recipes
 
 func _process(_delta: float):
+	if (randf() < 0.005) and (giggling <= 0.0):
+		giggling = 2.0
+		audio_player.stream = audio_dictionary["Cackle"][floor(randf() * 3.0)]
+		audio_player.play()
+	giggling = giggling - _delta
 	set_character_direction(direction)
 	
 	if cauldron_contents.size() > 0:
