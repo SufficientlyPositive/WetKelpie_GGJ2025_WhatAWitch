@@ -16,6 +16,7 @@ var velocity : Vector2
 var floating_velocity : Vector2 = Vector2(0.0, -30.0)
 var wobble_momentum : float
 var wobble_delta : float
+var popping_animation : float = 1.0
 
 @onready var collision_area : Area2D = $Area2D
 @onready var bubble_sprite : Sprite2D = $Sprite2D
@@ -28,14 +29,15 @@ func _ready():
 	#collision_area = get_child(1)
 	set_status("empty")
 
-func _process(delta):
+func _process(delta: float) -> void:
 	wobbling_animation(delta)
 	match status:
 		"empty":
 			# Check for transition to catching state (Check collision)
 			if target == null:
-				if collision_area.has_overlapping_bodies():
-					var first_area = collision_area.get_overlapping_bodies()[0]
+				var overlapping_bodies = collision_area.get_overlapping_bodies()
+				if (overlapping_bodies).size() > 0:
+					var first_area = overlapping_bodies[0]
 					target = first_area
 					set_status("catching")
 			# Float up, lose momentum from player over time
@@ -66,7 +68,7 @@ func _process(delta):
 						set_status("popping")
 					else:
 						target.trap_in_bubble(self)
-					set_status("falling")
+						set_status("falling")
 		"falling":
 			# Check if we've reached ground, if so, transition to popping state
 			if collision_area.has_overlapping_bodies() or target == null:
@@ -75,19 +77,27 @@ func _process(delta):
 			else:
 				# Make the target follow our position very closely
 				if target is RigidBody2D:
-					(target as RigidBody2D).apply_central_impulse((- target.position) * 0.2)
+					(target as RigidBody2D).apply_central_impulse((- target.position) * 0.4)
 				#else:
 				#	target.position += (position - target.position)*capturing_speed_factor*delta
 				
 				#target.position += (position - target.position)*capturing_speed_factor*delta
 				
 				# Start falling toward the ground
-				position -= (floating_velocity)*delta*2.0
+				position -= (floating_velocity)*delta*2.5
 		"popping":
 			# For whatever reason, either we touched ground or something else, we are killing the bubble
-			#TODO play bubble popping animation?
-			queue_free() # Once The animation for popping is done, kill the node and children
-
+			if (target == null) and popping_animation <= 0.0: # and animation condition
+				# Once The animation for popping is done, kill the node and children
+				queue_free()
+			else:
+				if (target != null) and (target is Enemy):
+					if target.status != "popping":
+						#target.reparent(target.default_parent, true)
+						target.set_status("popping")
+			# Do animation for bubble popping, then stay invisible until queue_free()'d
+			bubble_sprite.modulate = bubble_sprite.modulate - Color(0.0, 0.0, 0.0, 1.0-popping_animation)
+			popping_animation = max(0.0, popping_animation - 0.075*delta)
 func set_status(state):
 	wobble_momentum = wobble_momentum_gain
 	status = state

@@ -39,6 +39,8 @@ var anim_status: SpriteAnims = SpriteAnims.STATIC
 
 var bubble_trapped: bool = false
 
+@onready var default_parent = get_parent()
+
 @export var sprite: AnimatedSprite2D
 @export var shadow: AnimatedSprite2D
 @export var collision_area: CollisionShape2D

@@ -4,15 +4,17 @@ extends RigidBody2D
 #var statuses : Array = ["falling", "stuck", "running", "popping"] # Unnecessary, here for readability
 var status : String
 
+@onready var default_parent = get_parent()
 @onready var collision_area : CollisionShape2D = $CollisionShape2D
 @onready var enemy_sprite : AnimatedSprite2D = $AnimatedSprite2D
 
 const MAX_Y_VELOCITY: float = 300
 const MAX_Y_BUBBLE_VELOCITY: float = 100
-const inflating_factor = 1.03
-const exploding_time = 0.2
-const running_acceleration : Vector2 = Vector2(10.0, 0.0)
+const inflating_factor = 1.005
+const exploding_time = 0.8
+const running_acceleration : Vector2 = Vector2(100.0, 0.0)
 const max_velocity : Vector2 = Vector2(100.0, 0.0)
+var direction : Vector2 = Vector2(0.0, 0.0)
 
 var accum_delta : float = 0.0
 var velocity : Vector2
@@ -25,10 +27,8 @@ var bubble_trapped : bool = false
 func _ready():
 	set_status("falling")
 
-func _process(delta: float) -> void:
-	spinning_animation(delta)
-
 func _physics_process(delta: float) -> void:
+	spinning_animation(delta)
 	if bubble_trapped == false:
 		apply_central_force(calc_gravity_force(delta))
 	match status:
@@ -41,16 +41,28 @@ func _physics_process(delta: float) -> void:
 			jittering_animation(delta)
 		"running":
 			enemy_sprite.play("run")
-			apply_impulse(running_acceleration * delta)
-			#position += velocity * delta
+			if direction == Vector2(0.0, 0.0):
+				direction = Vector2(global_position.x - 950.0, 0.0).normalized()
+				if direction.x < 0.0:
+					enemy_sprite.flip_h = true
+			# If you want Mr. Haggis to roll like a buffoon
+			# apply_impulse(running_acceleration * direction * delta)
+			# If you want actual results
+			linear_velocity = linear_velocity - running_acceleration * direction * delta * 3.0
+			rotation = 0.0
 		"popping":
 			jittering_animation(delta)
 			accum_delta += delta
-			#enemy_sprite.scale = enemy_sprite.scale * inflating_factor
+			enemy_sprite.scale = enemy_sprite.scale * inflating_factor
 			if accum_delta > exploding_time:
+				scale = Vector2(1.0, 1.0)
 				enemy_sprite.play("boom")
 				if enemy_sprite.frame == 16:
+					print("This is how I died  :D")
 					queue_free()
+				else:
+					#print(position)
+					pass
 			else:
 				enemy_sprite.play("blow")
 
@@ -66,24 +78,26 @@ func set_status(state):
 			bubble_trapped = false
 			jittering = 0.0
 			enemy_sprite.rotation = 0.0
-			sprite_angular_velocity = 5.0
+			sprite_angular_velocity = 3.0
 		"stuck":
 			bubble_trapped = true
 			jittering = 0.5
-			sprite_angular_velocity = 10.0
+			sprite_angular_velocity = 6.0
 		"running":
 			bubble_trapped = false
 			jittering = 0.0
 			enemy_sprite.rotation = 0.0
 			sprite_angular_velocity = 0.0
 		"popping":
-			bubble_trapped = true
-			jittering = 2.0
+			bubble_trapped = false
+			jittering = 3.0
 			enemy_sprite.rotation = 0.0
 			sprite_angular_velocity = 0.0
 
 func trap_in_bubble(bubble: Bubble) -> void:
-	self.reparent(bubble)
+	default_parent = get_parent()
+	set_status("stuck")
+	self.reparent(bubble, true)
 	bubble_trapped = true
 	self.linear_damp = 3.0
 	collision_area.disabled = true
