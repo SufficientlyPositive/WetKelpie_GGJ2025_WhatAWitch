@@ -91,7 +91,7 @@ func _process(delta: float) -> void:
 				# Once The animation for popping is done, kill the node and children
 				queue_free()
 			else:
-				if (target != null) and (target is Enemy):
+				if (target != null):
 					if target.status != "popping":
 						#target.reparent(target.default_parent, true)
 						target.set_status("popping")
