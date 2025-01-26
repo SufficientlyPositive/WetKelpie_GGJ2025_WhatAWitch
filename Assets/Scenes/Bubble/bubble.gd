@@ -103,16 +103,16 @@ func set_status(state):
 	status = state
 	match state:
 		"empty":
-			bubble_sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
+			bubble_sprite.modulate = Color(0.9, 0.7, 0.9, 1.0)
 			set_collision_masks([4, 5])		# Check for ingredients and enemies
 		"catching":
-			bubble_sprite.modulate = Color(0.0, 1.0, 0.0, 1.0)
-			set_collision_masks([])			# We care about nothing.
+			bubble_sprite.modulate = Color(0.6, 0.4, 1.0, 1.0)
+			set_collision_masks([])			# We care about nothing.a
 		"falling":
-			bubble_sprite.modulate = Color(0.0, 0.0, 1.0, 1.0)
+			bubble_sprite.modulate = Color(0.8, 0.3, 0.8, 1.0)
 			set_collision_masks([1])			# Check for ground only. Player's and Cauldron's job to check for us.
 		"popping":
-			bubble_sprite.modulate = Color(1.0, 0.0, 0.0, 1.0)
+			bubble_sprite.modulate = Color(1.0, 0.4, 0.6, 1.0)
 			set_collision_masks([])			# "There is nothing we can do." - Napoleon Bonaparte
 
 func set_collision_masks(masks):
