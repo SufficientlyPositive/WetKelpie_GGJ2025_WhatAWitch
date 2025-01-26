@@ -220,40 +220,42 @@ func get_recipe() -> int:
 	return -1
 
 func set_character_direction(local_direction: Direction):
-	match local_direction:
-		Direction.LEFT: 
-			self.scale.y = -stored_scale
-			self.rotation_degrees = 180
-			#if HP == 1:
-			#	shield_sprite.get_parent().scale.y = stored_scale
-			#	shield_sprite.get_parent().rotation = 0
-		Direction.RIGHT:
-			self.scale.y = stored_scale
-			self.rotation = 0
-			#if HP == 1:
-			#	shield_sprite.get_parent().scale.y = -stored_scale
-			#	shield_sprite.get_parent().rotation = 180
+	if invincibility_left < 0.3:
+		match local_direction:
+			Direction.LEFT: 
+				self.scale.y = -stored_scale
+				self.rotation_degrees = 180
+				#if HP == 1:
+				#	shield_sprite.get_parent().scale.y = stored_scale
+				#	shield_sprite.get_parent().rotation = 0
+			Direction.RIGHT:
+				self.scale.y = stored_scale
+				self.rotation = 0
+				#if HP == 1:
+				#	shield_sprite.get_parent().scale.y = -stored_scale
+				#	shield_sprite.get_parent().rotation = 180
 
 func take_damage() -> void:
 	HP -= 1
 	if HP == 1:
 		#kill the kitty
-		shield_popping_velocity = (Vector2(randf()*0.2, -1.0)*300.0)
+		shield_popping_velocity = (Vector2(randf()*0.2, -1.0)*600.0)
 		shield_sprite.play("dead")
 			# then play gravity on the kitty every frame, you can do this by checking HP every frame
 			#shield_popping_velocity = shield_popping_velocity + (Vector2(0.0, 1.0) * 500.0) * delta
 			#shield_node.position += shield_popping_velocity * delta
-		invincibility_left = 5.0
+		invincibility_left = 2.5
 	else:
 		# Game over
 		game_over.emit(true)
 
 func check_damage(delta) -> void:
 	if HP == 1:
-		shield_popping_velocity = shield_popping_velocity + (Vector2(0.0, 1.0) * 500.0) * delta
+		shield_popping_velocity = shield_popping_velocity + (Vector2(0.0, 1.0) * 1200.0) * delta
 		shield_sprite.get_parent().position += shield_popping_velocity * delta
 		shield_sprite.rotation += delta
-	if invincibility_left < 0.5:
+	if invincibility_left < 0.3:
+		invincibility_left = 0.0
 		player_sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		var overlapping_bodies = player_hurtbox.get_overlapping_bodies()
 		if (overlapping_bodies).size() > 0:
