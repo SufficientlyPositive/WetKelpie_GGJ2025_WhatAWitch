@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=35 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -21,6 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://b7ptfg8dd55w6" path="res://Assets/Images/Witch Flying.png" id="18_dn552"]
 [ext_resource type="Texture2D" uid="uid://bku6mxyv0wa3u" path="res://Assets/Images/ShieldCat.png" id="19_8001e"]
 [ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/cauldron.png" id="20_ya0mu"]
+[ext_resource type="Texture2D" uid="uid://b2xm24udpqdgr" path="res://Assets/Images/Cauldron Det 1.png" id="21_64k8u"]
+[ext_resource type="Texture2D" uid="uid://dqrolxdmt4b0m" path="res://Assets/Images/Cauldron Det 2.png" id="22_mscwv"]
+[ext_resource type="Texture2D" uid="uid://b16ej5f053lfv" path="res://Assets/Images/Cauldron Det 3.png" id="23_5vt8b"]
+[ext_resource type="Script" path="res://Assets/Scenes/Game/cauldron_explosion.gd" id="24_26185"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia71d"]
 bg_color = Color(0.298039, 0.0509804, 0.054902, 1)
@@ -67,6 +71,28 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5vnle"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_64k8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_mscwv")
+}, {
+"duration": 2.0,
+"texture": ExtResource("23_5vt8b")
+}],
+"loop": false,
+"name": &"explosion",
 "speed": 5.0
 }]
 
@@ -359,7 +385,6 @@ script = ExtResource("8_euk73")
 
 [node name="PlayerPhysicsCollision" type="CollisionShape2D" parent="GameScene/PlayerCharacter"]
 position = Vector2(-3.33313, 78.75)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_hbfva")
 
 [node name="PlayerHurtBox" type="Area2D" parent="GameScene/PlayerCharacter"]
@@ -386,7 +411,6 @@ collision_mask = 56
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameScene/PlayerCharacter/Cauldron"]
 position = Vector2(-19.3596, -15)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_aalth")
 
 [node name="CauldronSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/Cauldron"]
@@ -395,6 +419,14 @@ rotation = -0.103554
 scale = Vector2(0.25, 0.23)
 sprite_frames = SubResource("SpriteFrames_5neq7")
 autoplay = "default"
+
+[node name="CauldronExplosion" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/Cauldron"]
+position = Vector2(-82.0317, -86.25)
+rotation = -0.102974
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_5vnle")
+autoplay = "default"
+script = ExtResource("24_26185")
 
 [node name="EverythingKillbox" type="Area2D" parent="GameScene"]
 script = ExtResource("13_4tnrd")
@@ -407,4 +439,5 @@ polygon = PackedVector2Array(-685.721, 1740, 2687.18, 1740, 2720.6, -567, -695.8
 [connection signal="change_points_by" from="GameScene/PlayerCharacter" to="." method="change_points"]
 [connection signal="area_entered" from="GameScene/PlayerCharacter/Cauldron" to="GameScene/PlayerCharacter" method="on_cauldron_body_entered"]
 [connection signal="body_entered" from="GameScene/PlayerCharacter/Cauldron" to="GameScene/PlayerCharacter" method="on_cauldron_body_entered"]
+[connection signal="animation_finished" from="GameScene/PlayerCharacter/Cauldron/CauldronExplosion" to="GameScene/PlayerCharacter/Cauldron/CauldronExplosion" method="on_animation_finished"]
 [connection signal="body_entered" from="GameScene/EverythingKillbox" to="GameScene/EverythingKillbox" method="_on_killbox_entered"]

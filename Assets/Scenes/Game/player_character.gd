@@ -17,10 +17,14 @@ signal change_points_by(value: int)
 
 const jump_force: float = 280
 const max_speed: float = 400
+
 var acceleration: float = 1500
 var direction: Direction = Direction.RIGHT
 
+const cauldron_item_throttle: float = 0.5
+var cauldron_time_since_item: float = 0
 var cauldron_contents : Array[RecipeManager.Ingredients]
+@onready var cauldron_explosion: CauldronExplosionAnimation = $Cauldron/CauldronExplosion
 
 @onready var stored_scale = self.scale.x
 
@@ -44,6 +48,7 @@ func _process(_delta: float):
 			update_cauldron_ui()
 
 func _physics_process(delta: float):
+	cauldron_time_since_item += delta
 	var accel: Vector2 = Vector2(get_x_accel(delta), get_y_accel(delta))
 	
 	if accel.x < 0:
@@ -79,6 +84,11 @@ func get_y_accel(delta: float) -> float:
 	return y_component
 
 func on_cauldron_body_entered(body: Node2D):
+	if cauldron_time_since_item < cauldron_item_throttle:
+		return
+	else:
+		cauldron_time_since_item = 0
+	
 	var success: bool = false
 	if body is Enemy:
 		if (body as Enemy).status != "running":
@@ -105,7 +115,7 @@ func on_cauldron_body_entered(body: Node2D):
 					print("wtf else are you putting in this dang cauldron?!")
 					explode_cauldron()
 	
-	if success:		
+	if success:
 		match(get_cauldron_action()):
 			CauldronState.FINE: 
 				if RecipeManager.compare_ingredients_list(recipe_manager.current_recipe.ingredients, cauldron_contents):
@@ -125,6 +135,7 @@ func on_cauldron_body_entered(body: Node2D):
 
 func explode_cauldron():
 	cauldron_clear()
+	cauldron_explosion.explode()
 	change_points_by.emit(-100)
 
 func craft_potion_raw(value: int, effect) -> void:
