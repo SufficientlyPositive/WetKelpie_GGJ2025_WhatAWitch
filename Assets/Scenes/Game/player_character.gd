@@ -65,10 +65,9 @@ func update_cauldron_ui():
 func _process(_delta: float):
 	set_character_direction(direction)
 	
-	if cauldron_contents.size() < 3:
-		if Input.is_action_just_pressed("ui_home"):
-			cauldron_contents.append(RecipeManager.Ingredients.values().pick_random())
-			update_cauldron_ui()
+	if cauldron_contents.size() < 0:
+		if Input.is_action_just_pressed("Clear Cauldron"):
+			cauldron_clear()
 
 func _physics_process(delta: float):
 	cauldron_time_since_item += delta

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=39 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -13,6 +13,7 @@
 [ext_resource type="FontFile" uid="uid://cwltetxo7ybuy" path="res://Assets/Fonts/grandstander/Grandstander-Bold.ttf" id="7_rud6v"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/player_character.gd" id="8_euk73"]
 [ext_resource type="PackedScene" uid="uid://chrrjtg6y86xk" path="res://Assets/Scenes/Enemy/enemy_control.tscn" id="9_37kig"]
+[ext_resource type="FontFile" uid="uid://4au5igp3qy3w" path="res://Assets/Fonts/grandstander/Grandstander-Regular.ttf" id="10_e0v8r"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/everything_killbox.gd" id="13_4tnrd"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/ingredient_spawner.gd" id="14_xe6ob"]
 [ext_resource type="PackedScene" uid="uid://bu3dpmmojpwr6" path="res://Assets/Scenes/Bubble/bubble_control.tscn" id="15_44rxp"]
@@ -293,36 +294,38 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
 offset_top = 198.0
-offset_bottom = -71.0
+offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_right = 80
+theme_override_constants/margin_left = 90
+theme_override_constants/margin_right = 60
 
 [node name="RecipeCards" type="VBoxContainer" parent="GameCanvas/Recipes/MarginContainer"]
 layout_mode = 2
 
 [node name="RecipeCard" type="HBoxContainer" parent="GameCanvas/Recipes/MarginContainer/RecipeCards"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(210, 40)
 layout_mode = 2
 
-[node name="Val" type="Label" parent="GameCanvas/Recipes/MarginContainer/RecipeCards/RecipeCard"]
-custom_minimum_size = Vector2(142, 0)
+[node name="Label" type="Label" parent="GameCanvas/Recipes/MarginContainer/RecipeCards/RecipeCard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_e0v8r")
 theme_override_font_sizes/font_size = 32
-text = "ANY x3"
+text = "  ANY x3 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Val2" type="Label" parent="GameCanvas/Recipes/MarginContainer/RecipeCards/RecipeCard"]
+[node name="Val" type="Label" parent="GameCanvas/Recipes/MarginContainer/RecipeCards/RecipeCard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_rud6v")
 theme_override_font_sizes/font_size = 32
 text = "100"
 horizontal_alignment = 1
@@ -333,12 +336,12 @@ layout_mode = 2
 alignment = 2
 
 [node name="Label" type="Label" parent="GameCanvas/Recipes/MarginContainer/CurrentRecipe"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_rud6v")
 theme_override_font_sizes/font_size = 30
-text = "BONUS POINTS!"
+text = "BONUS!   "
 horizontal_alignment = 1
 
 [node name="PauseMenu" type="ColorRect" parent="GameCanvas"]
