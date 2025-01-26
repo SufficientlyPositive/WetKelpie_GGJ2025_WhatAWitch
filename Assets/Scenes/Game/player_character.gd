@@ -15,19 +15,23 @@ enum CauldronState {NOT_ENOUGH_ITEMS, FINE, NEEDS_EXPLODE}
 
 signal change_points_by(value: int)
 
-const jump_force: float = 280
+const jump_force: float = 350
 const max_speed: float = 400
 
 var acceleration: float = 1500
 var direction: Direction = Direction.RIGHT
 
-const cauldron_item_throttle: float = 0.5
+const cauldron_item_throttle: float = 0.2
 var cauldron_time_since_item: float = 0
 var cauldron_contents : Array[RecipeManager.Ingredients]
 @onready var cauldron_explosion: CauldronExplosionAnimation = $Cauldron/CauldronExplosion
 var cauldron_exploding: bool = false
 
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
+@onready var shield_sprite: AnimatedSprite2D = $ShieldNode.get_child(0)
+@onready var cauldron: Area2D = $Cauldron
+var accum_delta = 0.0
+var broom_tilt = 0.0
 
 @onready var stored_scale = self.scale.x
 
@@ -52,6 +56,9 @@ func _process(_delta: float):
 
 func _physics_process(delta: float):
 	cauldron_time_since_item += delta
+	accum_delta = fmod(accum_delta + 2.0*delta, 2.0*PI)
+	floating_animation()
+	tilting_animation()
 	
 	if not cauldron_exploding:
 		var accel: Vector2 = Vector2(get_x_accel(delta), get_y_accel(delta))
@@ -194,3 +201,16 @@ func set_character_direction(local_direction: Direction):
 func _on_player_sprite_animation_finished() -> void:
 	cauldron_exploding = false
 	player_sprite.play("default")
+
+func floating_animation() -> void:
+	player_sprite.position = Vector2(0.0, 0.0 + 10.0*sin(accum_delta))
+	shield_sprite.position = Vector2(104.0, 12.5 + 10.0*sin(accum_delta))
+	cauldron.position = Vector2(19.0, 0.0 + 10.0*sin(accum_delta))
+
+func tilting_animation() -> void:
+	broom_tilt += 0.005*velocity.length()
+	broom_tilt /= 5.0
+	var rot = 0.3*(1.0 - exp(- broom_tilt))
+	player_sprite.rotation = rot
+	shield_sprite.get_parent().rotation = rot
+	

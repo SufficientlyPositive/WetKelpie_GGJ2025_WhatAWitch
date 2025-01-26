@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=38 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
@@ -22,8 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://b7ptfg8dd55w6" path="res://Assets/Images/Witch Flying.png" id="18_dn552"]
 [ext_resource type="Texture2D" uid="uid://bku6mxyv0wa3u" path="res://Assets/Images/ShieldCat.png" id="19_8001e"]
 [ext_resource type="Texture2D" uid="uid://dxqoyk4scnh8f" path="res://Assets/Images/Witch Kablooie.png" id="19_osicn"]
-[ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/Cauldron.png" id="20_ya0mu"]
+[ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/cauldron.png" id="20_ya0mu"]
 [ext_resource type="Texture2D" uid="uid://b2xm24udpqdgr" path="res://Assets/Images/Cauldron Det 1.png" id="21_64k8u"]
+[ext_resource type="Texture2D" uid="uid://efuwl0pkk8h4" path="res://Assets/Images/ShieldCat Used.png" id="22_h6qkp"]
 [ext_resource type="Texture2D" uid="uid://dqrolxdmt4b0m" path="res://Assets/Images/Cauldron Det 2.png" id="22_mscwv"]
 [ext_resource type="Texture2D" uid="uid://b16ej5f053lfv" path="res://Assets/Images/Cauldron Det 3.png" id="23_5vt8b"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/cauldron_explosion.gd" id="24_26185"]
@@ -70,6 +71,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_h6qkp")
+}],
+"loop": true,
+"name": &"used",
 "speed": 5.0
 }]
 
@@ -408,8 +417,10 @@ sprite_frames = SubResource("SpriteFrames_papvs")
 animation = &"cauldron_explodes"
 autoplay = "default"
 
-[node name="ShieldSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter"]
-position = Vector2(104.085, 12.5)
+[node name="ShieldNode" type="Node2D" parent="GameScene/PlayerCharacter"]
+
+[node name="ShieldSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/ShieldNode"]
+position = Vector2(104, 12.5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_4hrys")
 
