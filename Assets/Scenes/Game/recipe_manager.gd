@@ -11,7 +11,6 @@ var ingredient_sprites = [
 ]
 var recipe_card = preload("res://Assets/Scenes/Game/recipe_card.tscn")
 
-
 enum Ingredients {
 		SNAKE_EYES,
 		FROGS_LEG,
@@ -37,11 +36,13 @@ static func compare_ingredients_list(a: Array[Ingredients], b: Array[Ingredients
 class Recipe:
 	var ingredients : Array[Ingredients]
 	var value : int
+	var effect = null
 	
 	func _init(ing : Array[Ingredients], val : int) -> void:
 		ingredients = ing
 		value = val
 
+const current_recipe_points_mod: int = 5
 
 var valid_recipes : Array[Recipe] = [
 	
@@ -92,7 +93,7 @@ func pick_new_current_recipe():
 	var rc = recipe_card.instantiate()
 	for i in range(3):
 		rc.get_node("I" + str(i)).texture = ingredient_sprites[int(current_recipe.ingredients[i])]
-		rc.get_node("Val").text = str(current_recipe.value * 5)
+		rc.get_node("Val").text = str(current_recipe.value * current_recipe_points_mod)
 	$MarginContainer/CurrentRecipe.add_child(rc)
 
 

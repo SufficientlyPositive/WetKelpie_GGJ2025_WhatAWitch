@@ -98,11 +98,16 @@ func on_cauldron_body_entered(body: Node2D):
 	
 	match(get_cauldron_action()):
 		CauldronState.FINE: 
-			var recipe_index: int = get_recipe()
-			if recipe_index == -1:
-				explode_cauldron()
+			if RecipeManager.compare_ingredients_list(recipe_manager.current_recipe.ingredients, cauldron_contents):
+				craft_potion_raw(recipe_manager.current_recipe.value * RecipeManager.current_recipe_points_mod, \
+					recipe_manager.current_recipe.effect)
+				recipe_manager.pick_new_current_recipe()
 			else:
-				craft_potion(recipe_manager.valid_recipes[recipe_index])
+				var recipe_index: int = get_recipe()
+				if recipe_index == -1:
+					explode_cauldron()
+				else:
+					craft_potion(recipe_manager.valid_recipes[recipe_index])
 		CauldronState.NEEDS_EXPLODE:
 			explode_cauldron()
 	
@@ -112,10 +117,13 @@ func explode_cauldron():
 	cauldron_clear()
 	change_points_by.emit(-100)
 
-func craft_potion(recipe: RecipeManager.Recipe):
+func craft_potion_raw(value: int, effect) -> void:
 	cauldron_clear()
-	print("Potion crafted with value: " + str(recipe.value))
-	change_points_by.emit(recipe.value)
+	print("Potion crafted with value: " + str(value))
+	change_points_by.emit(value)
+
+func craft_potion(recipe: RecipeManager.Recipe):
+	craft_potion_raw(recipe.value, recipe.effect)
 
 func cauldron_clear():
 	self.cauldron_contents.clear()
