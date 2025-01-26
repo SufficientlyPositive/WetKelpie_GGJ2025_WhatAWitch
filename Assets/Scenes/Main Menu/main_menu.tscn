@@ -8,10 +8,12 @@
 [ext_resource type="FontFile" uid="uid://cwltetxo7ybuy" path="res://Assets/Fonts/grandstander/Grandstander-Bold.ttf" id="4_fbajt"]
 [ext_resource type="Texture2D" uid="uid://ch58wgpfdf145" path="res://Assets/Images/Start Button 2.png" id="5_4ybx2"]
 [ext_resource type="Texture2D" uid="uid://bl2l80ck4pvsj" path="res://Assets/Images/Start Button.png" id="5_oetgk"]
-[ext_resource type="Texture2D" uid="uid://c6kb5ko68632r" path="res://Assets/Images/Menu Scroll Short.png" id="5_sknac"]
 [ext_resource type="Texture2D" uid="uid://bbfq4g235f2nv" path="res://Assets/Images/Quit Button 2.png" id="6_iuggp"]
 [ext_resource type="Texture2D" uid="uid://cafw0iplok2iv" path="res://Assets/Images/Quit button.png" id="7_w8hr7"]
 [ext_resource type="Texture2D" uid="uid://eeexl2qfv6p1" path="res://Assets/Images/Wet_Kelpie_logo_revised.png" id="12_mq030"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oykcb"]
+load_path = "res://.godot/imported/Menu Scroll Short.png-d5a3441fc60e01434d8e6b0de47a9af3.ctex"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j3vc1"]
 texture = ExtResource("5_4ybx2")
@@ -138,7 +140,7 @@ offset_top = 17.0
 offset_right = 557.0
 offset_bottom = 983.0
 scale = Vector2(1.1, 1.1)
-texture = ExtResource("5_sknac")
+texture = SubResource("CompressedTexture2D_oykcb")
 
 [node name="MenuScroll" type="TextureRect" parent="."]
 visible = false
@@ -148,7 +150,7 @@ offset_top = 1.0
 offset_right = 538.0
 offset_bottom = 967.0
 scale = Vector2(1.1, 1.1)
-texture = ExtResource("5_sknac")
+texture = SubResource("CompressedTexture2D_oykcb")
 
 [node name="CreditsShadow" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.760784)
