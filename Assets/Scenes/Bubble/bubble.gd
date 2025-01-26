@@ -98,6 +98,7 @@ func _process(delta: float) -> void:
 			# Do animation for bubble popping, then stay invisible until queue_free()'d
 			bubble_sprite.modulate = bubble_sprite.modulate - Color(0.0, 0.0, 0.0, 1.0-popping_animation)
 			popping_animation = max(0.0, popping_animation - 0.075*delta)
+
 func set_status(state):
 	wobble_momentum = wobble_momentum_gain
 	status = state
