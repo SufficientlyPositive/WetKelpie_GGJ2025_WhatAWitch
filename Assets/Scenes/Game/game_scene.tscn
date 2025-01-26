@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://Assets/Scenes/Game/recipe_manager.gd" id="5_tkifj"]
 [ext_resource type="Texture2D" uid="uid://do4kbiwqlode7" path="res://Assets/Images/Cauldron List.png" id="6_nj5fe"]
 [ext_resource type="Texture2D" uid="uid://clndotwhc88xb" path="res://Assets/Images/Recipe List.png" id="7_jbq0w"]
-[ext_resource type="Texture2D" uid="uid://6jgh3wgkufuj" path="res://Assets/Images/Programmer Art/wood_plank.png" id="7_ri1rv"]
 [ext_resource type="FontFile" uid="uid://cwltetxo7ybuy" path="res://Assets/Fonts/grandstander/Grandstander-Bold.ttf" id="7_rud6v"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/player_character.gd" id="8_euk73"]
 [ext_resource type="PackedScene" uid="uid://chrrjtg6y86xk" path="res://Assets/Scenes/Enemy/enemy_control.tscn" id="9_37kig"]
@@ -18,6 +17,7 @@
 [ext_resource type="Script" path="res://Assets/Scenes/Game/ingredient_spawner.gd" id="14_xe6ob"]
 [ext_resource type="PackedScene" uid="uid://bu3dpmmojpwr6" path="res://Assets/Scenes/Bubble/bubble_control.tscn" id="15_44rxp"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/spawning_area.gd" id="16_1au7j"]
+[ext_resource type="Texture2D" uid="uid://drvbaoed44owq" path="res://Assets/Images/Platform.png" id="16_k7shc"]
 [ext_resource type="Texture2D" uid="uid://b7ptfg8dd55w6" path="res://Assets/Images/Witch Flying.png" id="18_dn552"]
 [ext_resource type="Texture2D" uid="uid://bku6mxyv0wa3u" path="res://Assets/Images/ShieldCat.png" id="19_8001e"]
 [ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/cauldron.png" id="20_ya0mu"]
@@ -29,10 +29,10 @@ bg_color = Color(0.298039, 0.0509804, 0.054902, 1)
 size = Vector2(984.521, 41)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5giy"]
-size = Vector2(1157, 103)
+size = Vector2(1183.85, 103)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbfva"]
-size = Vector2(156.997, 20)
+size = Vector2(156.997, 27.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_papvs"]
 animations = [{
@@ -341,27 +341,25 @@ z_index = 4
 position = Vector2(960, 540)
 
 [node name="PlankSprite" type="Sprite2D" parent="GameScene/ForegroundWalkable"]
-position = Vector2(0, 6.10352e-05)
-texture = ExtResource("7_ri1rv")
+position = Vector2(14.8801, 426)
+scale = Vector2(0.976, 0.976)
+texture = ExtResource("16_k7shc")
 
 [node name="ForegroundCollision" type="CollisionShape2D" parent="GameScene/ForegroundWalkable"]
-position = Vector2(-4.5, 489.5)
-shape = SubResource("RectangleShape2D_o5giy")
-
-[node name="ForegroundCollision2" type="CollisionShape2D" parent="GameScene/ForegroundWalkable"]
-position = Vector2(-4.5, 489.5)
+position = Vector2(8.66748, 473.5)
 shape = SubResource("RectangleShape2D_o5giy")
 
 [node name="PlayerCharacter" type="CharacterBody2D" parent="GameScene"]
 unique_name_in_owner = true
 z_index = 3
-position = Vector2(960, 913)
+position = Vector2(960, 886)
 scale = Vector2(0.8, 0.8)
 collision_layer = 0
 script = ExtResource("8_euk73")
 
 [node name="PlayerPhysicsCollision" type="CollisionShape2D" parent="GameScene/PlayerCharacter"]
-position = Vector2(-3.33313, 65)
+position = Vector2(-3.33313, 78.75)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_hbfva")
 
 [node name="PlayerHurtBox" type="Area2D" parent="GameScene/PlayerCharacter"]
@@ -369,7 +367,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameScene/PlayerCharacter/PlayerHurtBox"]
-polygon = PackedVector2Array(-52.4579, -6, -92.9732, 23, -82.8444, 77, 28.5726, 77, 45.7916, 52, 44.7787, 30, 26.5469, -39, 58.9591, -92, -33.2131, -113, -28.1487, -60)
+polygon = PackedVector2Array(-11.13, -26.25, 1.53101, -25, -7.33179, -22.5, -13.2244, -15.4703, -14.9283, -11.25, -19.9928, -10, -21.2589, -3.75, -46.5809, 10, -59.2419, 8.75, -68.1046, 15, -70.6368, 21.25, -70.6368, 25, -71.903, 27.5, -71.903, 31.25, -69.3707, 35, -64.3063, 36.25, -59.2419, 35, -56.7097, 40, -52.9114, 42.5, -55.4436, 43.75, -65.5724, 45, -68.1046, 50, -68.1046, 66.25, -46.5809, 71.25, -11.13, 71.25, 21.7886, 57.5, 30.7256, 61.6082, 61.0378, 57.5, 73.6989, 51.25, 90.1581, 50, 101.553, 68.75, 110.416, 68.75, 114.223, 57.8155, 115.48, 37.5, 124.343, 32.5, 124.343, 28.75, 107.884, 22.5, 96.4886, 30, 88.8921, 32.5, 90.1581, 25, 78.7632, 6.25, 80.0293, 1.25, 77.4971, -6.25, 76.231, -17.5, 68.6344, -25, 78.7632, -31.25, 85.0938, -42.5, 88.8921, -60, 86.3599, -71.25, 101.553, -78.75, 114.214, -88.75, 114.214, -96.25, 95.2225, -106.25, 67.3683, -105, 30.6514, -140, 5.32935, -136.25, -11.13, -117.5, -28.8555, -116.25, -52.9114, -92.5, -51.6453, -90, -25.0571, -97.5, -13.6622, -86.25, -36.452, -73.75, -44.0487, -63.75, -42.7826, -57.5, -35.186, -52.5, -26.3232, -53.75, -26.3232, -43.75, -21.2589, -33.75)
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter"]
 scale = Vector2(0.6, 0.6)
