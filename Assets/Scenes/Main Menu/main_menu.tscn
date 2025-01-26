@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b536i7rsodvw0"]
+[gd_scene load_steps=19 format=3 uid="uid://b536i7rsodvw0"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Main Menu/main_menu.gd" id="1_ufqnc"]
 [ext_resource type="Theme" uid="uid://cny8msiucnohq" path="res://Assets/UI/Themes/menu_button_theme.tres" id="2_6lp63"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cafw0iplok2iv" path="res://Assets/Images/Quit button.png" id="7_w8hr7"]
 [ext_resource type="Texture2D" uid="uid://u8f5c16my4sl" path="res://Assets/Images/What A Witch Title.png" id="12_ab4um"]
 [ext_resource type="Texture2D" uid="uid://eeexl2qfv6p1" path="res://Assets/Images/Wet_Kelpie_logo_revised.png" id="12_mq030"]
+[ext_resource type="FontFile" uid="uid://4au5igp3qy3w" path="res://Assets/Fonts/grandstander/Grandstander-Regular.ttf" id="13_n35va"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j3vc1"]
 texture = ExtResource("5_4ybx2")
@@ -177,6 +178,21 @@ theme = ExtResource("2_6lp63")
 theme_override_styles/hover = SubResource("StyleBoxTexture_dqmxo")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_lm8ax")
 theme_override_styles/normal = SubResource("StyleBoxTexture_32cay")
+
+[node name="Music License Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -58.0
+offset_right = 520.0
+offset_bottom = 17.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("13_n35va")
+text = "\"The Path of the Goblin King v2\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
 
 [connection signal="pressed" from="ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]

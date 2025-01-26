@@ -26,6 +26,7 @@ func remove_main_menu():
 
 func load_game_main():
 	if not is_instance_valid(game_scene_root_node):
+		get_tree().paused = false
 		game_scene_root_node = game_scene.instantiate() as GameMain
 		self.add_child(game_scene_root_node)
 	else:
