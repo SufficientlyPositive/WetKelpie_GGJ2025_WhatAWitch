@@ -154,7 +154,7 @@ func explode_cauldron():
 	cauldron_explosion.explode()
 	cauldron_exploding = true
 	player_sprite.play("cauldron_explodes")
-	change_points_by.emit(-100)
+	change_points_by.emit(-50)
 
 func craft_potion_raw(value: int, effect) -> void:
 	cauldron_clear()

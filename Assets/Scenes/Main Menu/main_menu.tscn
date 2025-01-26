@@ -184,5 +184,5 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_lm8ax")
 theme_override_styles/normal = SubResource("StyleBoxTexture_32cay")
 
 [connection signal="pressed" from="ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="ButtonContainer/QuitButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]

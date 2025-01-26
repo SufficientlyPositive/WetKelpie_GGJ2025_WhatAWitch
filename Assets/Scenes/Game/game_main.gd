@@ -31,6 +31,7 @@ func _process(_delta):
 
 func change_points(add_val: int) -> void:
 	points += add_val
+	points = max(0, points)
 	change_points_ui(points)
 
 func change_points_ui(new_val: int) -> void:
