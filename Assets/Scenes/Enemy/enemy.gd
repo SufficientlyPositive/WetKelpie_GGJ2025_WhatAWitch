@@ -7,6 +7,15 @@ var status : String
 @onready var default_parent = get_parent()
 @onready var collision_area : CollisionShape2D = $CollisionShape2D
 @onready var enemy_sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var audio_player : AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var audio_player_2 : AudioStreamPlayer2D = $AudioStreamPlayer2D2
+
+var audio_dict = {
+	"Grunting" : [], 
+	"Exploding" : [],
+	"Running" : []
+}
+var exploding = false;
 
 const MAX_Y_VELOCITY: float = 300
 const MAX_Y_BUBBLE_VELOCITY: float = 100
@@ -26,6 +35,7 @@ var bubble_trapped : bool = false
 
 func _ready():
 	set_status("falling")
+	load_audio()
 
 func _physics_process(delta: float) -> void:
 	spinning_animation(delta)
@@ -55,14 +65,13 @@ func _physics_process(delta: float) -> void:
 			accum_delta += delta
 			enemy_sprite.scale = enemy_sprite.scale * inflating_factor
 			if accum_delta > exploding_time:
-				scale = Vector2(1.0, 1.0)
+				if exploding == false:
+					audio_player.stream = audio_dict["Exploding"][floor(randf()*2.0)]
+					audio_player.play()
+					exploding = true
 				enemy_sprite.play("boom")
 				if enemy_sprite.frame == 16:
-					print("This is how I died  :D")
 					queue_free()
-				else:
-					#print(position)
-					pass
 			else:
 				enemy_sprite.play("blow")
 
@@ -84,6 +93,10 @@ func set_status(state):
 			jittering = 0.5
 			sprite_angular_velocity = 6.0
 		"running":
+			audio_player.stream = audio_dict["Grunting"][floor(randf()*3.0)]
+			audio_player.play()
+			audio_player_2.stream = audio_dict["Running"][0]
+			audio_player_2.play()
 			bubble_trapped = false
 			jittering = 0.0
 			enemy_sprite.rotation = 0.0
@@ -107,3 +120,11 @@ func jittering_animation(delta):
 
 func spinning_animation(delta):
 	enemy_sprite.rotation += sprite_angular_velocity * delta
+
+func load_audio():
+	audio_dict["Exploding"].append(load("res://Assets/Audio/HaggisBoom00.mp3"))
+	audio_dict["Exploding"].append(load("res://Assets/Audio/HaggisBoom01.mp3"))
+	audio_dict["Grunting"].append(load("res://Assets/Audio/HumanGrunt00.wav"))
+	audio_dict["Grunting"].append(load("res://Assets/Audio/HumanGrunt01.wav"))
+	audio_dict["Grunting"].append(load("res://Assets/Audio/HumanGrunt02.wav"))
+	audio_dict["Running"].append(load("res://Assets/Audio/Footsteps.mp3"))

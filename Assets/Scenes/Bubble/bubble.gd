@@ -5,6 +5,12 @@ var target : Node2D = null
 #var statuses : Array = ["empty", "catching", "falling"] # Unnecessary, here for readability
 var status : String
 
+var audio_dict = {
+	"Popping" : [], 
+	"Capturing" : [],
+	"Creating" : []
+}
+
 const momentum_loss_factor = 1.01 # Should be bigger than 1.0 to lose momentum, less than 1.0 would make the bubble accelerate
 const capturing_speed_factor : float = 10.0
 const capturing_distance_threshold : float = 5.0
@@ -18,6 +24,7 @@ var wobble_momentum : float
 var wobble_delta : float
 var popping_animation : float = 1.0
 
+@onready var audio_player : AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var collision_area : Area2D = $Area2D
 @onready var bubble_sprite : Sprite2D = $Sprite2D
 var current_collision_masks : Array
@@ -28,6 +35,10 @@ func _init():
 func _ready():
 	#collision_area = get_child(1)
 	set_status("empty")
+	load_audio()
+	audio_player.stream = audio_dict["Creating"][0]
+	audio_player.play()
+	
 
 func _process(delta: float) -> void:
 	wobbling_animation(delta)
@@ -105,12 +116,16 @@ func set_status(state):
 			bubble_sprite.modulate = Color(0.9, 0.7, 0.9, 1.0)
 			set_collision_masks([4, 5])		# Check for ingredients and enemies
 		"catching":
+			audio_player.stream = audio_dict["Capturing"][0]
+			audio_player.play()
 			bubble_sprite.modulate = Color(0.6, 0.4, 1.0, 1.0)
 			set_collision_masks([])			# We care about nothing.a
 		"falling":
 			bubble_sprite.modulate = Color(0.8, 0.3, 0.8, 1.0)
 			set_collision_masks([1])			# Check for ground only. Player's and Cauldron's job to check for us.
 		"popping":
+			audio_player.stream = audio_dict["Popping"][floor(randf()*6.0)]
+			audio_player.play()
 			bubble_sprite.modulate = Color(1.0, 0.4, 0.6, 1.0)
 			set_collision_masks([])			# "There is nothing we can do." - Napoleon Bonaparte
 
@@ -129,3 +144,13 @@ func wobbling_animation(delta):
 	wobble_delta = fmod(wobble_delta + wobbling*delta, 2.0*PI)
 	bubble_sprite.scale = base_scale + 0.02*Vector2(sin(wobble_delta), cos(wobble_delta))
 	wobble_momentum /= wobble_momentum_loss
+
+func load_audio():
+	audio_dict["Popping"].append(load("res://Assets/Audio/BubblePop00.wav"))
+	audio_dict["Popping"].append(load("res://Assets/Audio/BubblePop01.wav"))
+	audio_dict["Popping"].append(load("res://Assets/Audio/BubblePop02.wav"))
+	audio_dict["Popping"].append(load("res://Assets/Audio/BubblePop03.wav"))
+	audio_dict["Popping"].append(load("res://Assets/Audio/BubblePop04.wav"))
+	audio_dict["Popping"].append(load("res://Assets/Audio/BubblePop05.wav"))
+	audio_dict["Capturing"].append(load("res://Assets/Audio/Capture00.wav"))
+	audio_dict["Creating"].append(load("res://Assets/Audio/BubbleCreate.mp3"))
