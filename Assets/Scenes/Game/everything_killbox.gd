@@ -15,7 +15,7 @@ func _on_killbox_entered(body: Node2D) -> void:
 		pass
 	elif body is PlayerCharacter:
 		pass
-	elif body is Ingredient:
+	elif body is Ingredient or body is Enemy:
 		body.queue_free()
 	else:
 		body.get_parent().queue_free()

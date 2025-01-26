@@ -19,6 +19,10 @@ func toggle_pause():
 	get_tree().paused = not get_tree().paused
 	game_canvas.toggle_pause_menu()
 
+func game_over(b: bool):
+	get_tree().paused = b
+	game_canvas.game_over()
+
 func quit_to_main_menu():
 	root_node.load_main_menu()
 	root_node.remove_game_main() # queue free's self

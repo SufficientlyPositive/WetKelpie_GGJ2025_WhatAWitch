@@ -120,9 +120,10 @@ script = ExtResource("1_2dtmn")
 game_scene = NodePath("GameScene")
 game_canvas = NodePath("GameCanvas")
 
-[node name="GameCanvas" type="Node" parent="." node_paths=PackedStringArray("pause_menu")]
+[node name="GameCanvas" type="Node" parent="." node_paths=PackedStringArray("pause_menu", "game_over_menu")]
 script = ExtResource("3_m2qu8")
 pause_menu = NodePath("PauseMenu")
+game_over_menu = NodePath("GameOverMenu")
 
 [node name="BackBackground" type="TextureRect" parent="GameCanvas"]
 z_index = -1
@@ -432,6 +433,54 @@ text = "QUIT TO MENU"
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="GameOverMenu" type="ColorRect" parent="GameCanvas"]
+visible = false
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="QuitToMenuButton" type="Button" parent="GameCanvas/GameOverMenu"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+offset_left = 710.0
+offset_top = 526.0
+offset_right = 1210.0
+offset_bottom = 606.0
+theme = ExtResource("4_w2t0c")
+
+[node name="Label" type="Label" parent="GameCanvas/GameOverMenu/QuitToMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT TO MENU"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="GameOverText" type="Label" parent="GameCanvas/GameOverMenu"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -359.0
+offset_top = 331.0
+offset_right = 360.0
+offset_bottom = -586.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_rud6v")
+theme_override_font_sizes/font_size = 144
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="GameScene" type="Node2D" parent="." node_paths=PackedStringArray("player_character", "ingredient_spawner", "enemy_spawner")]
 process_mode = 1
 scale = Vector2(0.987282, 1)
@@ -545,7 +594,9 @@ polygon = PackedVector2Array(-685.721, 1740, 2687.18, 1740, 2720.6, -567, -695.8
 
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/ContinueButton" to="." method="toggle_pause"]
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/QuitToMenuButton" to="." method="quit_to_main_menu"]
+[connection signal="pressed" from="GameCanvas/GameOverMenu/QuitToMenuButton" to="." method="quit_to_main_menu"]
 [connection signal="change_points_by" from="GameScene/PlayerCharacter" to="." method="change_points"]
+[connection signal="game_over" from="GameScene/PlayerCharacter" to="." method="game_over"]
 [connection signal="animation_finished" from="GameScene/PlayerCharacter/PlayerSprite" to="GameScene/PlayerCharacter" method="_on_player_sprite_animation_finished"]
 [connection signal="area_entered" from="GameScene/PlayerCharacter/Cauldron" to="GameScene/PlayerCharacter" method="on_cauldron_body_entered"]
 [connection signal="body_entered" from="GameScene/PlayerCharacter/Cauldron" to="GameScene/PlayerCharacter" method="on_cauldron_body_entered"]
