@@ -365,5 +365,6 @@ polygon = PackedVector2Array(-685.721, 1740, 2687.18, 1740, 2720.6, -567, -695.8
 
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/ContinueButton" to="." method="toggle_pause"]
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/QuitToMenuButton" to="." method="quit_to_main_menu"]
+[connection signal="change_points_by" from="GameScene/PlayerCharacter" to="." method="change_points"]
 [connection signal="body_entered" from="GameScene/PlayerCharacter/Cauldron" to="GameScene/PlayerCharacter" method="on_cauldron_body_entered"]
 [connection signal="body_entered" from="GameScene/EverythingKillbox" to="GameScene/EverythingKillbox" method="_on_killbox_entered"]

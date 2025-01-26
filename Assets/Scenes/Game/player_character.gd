@@ -1,7 +1,6 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
-
 var ingredient_sprites = [
 	preload("res://Assets/Images/snake_eyes_big.png"),
 	preload("res://Assets/Images/frogs_leg_big.png"),
@@ -12,6 +11,8 @@ var ingredient_sprites = [
 
 enum Direction {LEFT, RIGHT}
 enum CauldronState {NOT_ENOUGH_ITEMS, FINE, NEEDS_EXPLODE}
+
+signal change_points_by(value: int)
 
 const jump_force: float = 280
 const max_speed: float = 400
@@ -77,27 +78,25 @@ func get_y_accel(delta: float) -> float:
 	return y_component
 
 func on_cauldron_body_entered(body: Node2D):
-	print("YHEEEEEEEEEEEEEEEEEEEEELP")
 	if body is Enemy:
-		explode_cauldron()
-		body.queue_free()
-		return
+		if (body as Enemy).status != "running":
+			explode_cauldron()
+			body.queue_free()
+			return
 	elif body is Ingredient:
 		self.cauldron_contents.push_back((body as Ingredient).type)
-	elif body is Bubble:
+	elif body.get_parent() is Bubble:
 		var target: Node2D = (body as Bubble).target
 		if target is Enemy:
 			self.cauldron_contents.push_back(RecipeManager.Ingredients.BUBBLED_ENEMY)
 		elif target is Ingredient:
 			self.cauldron_contents.push_back((body as Ingredient).type)
 		else:
-			push_error("non-ingredient/enemy in bubble???")
 			explode_cauldron()
 			body.queue_free()
 			return
 	
 	match(get_cauldron_action()):
-		CauldronState.NOT_ENOUGH_ITEMS: return
 		CauldronState.FINE: 
 			var recipe_index: int = get_recipe()
 			if recipe_index == -1:
@@ -106,13 +105,17 @@ func on_cauldron_body_entered(body: Node2D):
 				craft_potion(recipe_manager.valid_recipes[recipe_index])
 		CauldronState.NEEDS_EXPLODE:
 			explode_cauldron()
+	
 	body.queue_free()
 
 func explode_cauldron():
-	print("Explode cauldron")
+	cauldron_clear()
+	change_points_by.emit(-100)
 
 func craft_potion(recipe: RecipeManager.Recipe):
+	cauldron_clear()
 	print("Potion crafted with value: " + str(recipe.value))
+	change_points_by.emit(recipe.value)
 
 func cauldron_clear():
 	self.cauldron_contents.clear()
