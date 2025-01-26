@@ -46,7 +46,6 @@ func _process(delta: float) -> void:
 		"catching":
 			# Check if we've reached ground, if so, transition to popping state
 			if collision_area.has_overlapping_areas() or target == null:
-				#TODO "Let my people go!" Let the captured target be destroyed
 				set_status("popping")
 			else:
 				# We've collided with a target (ingredient or foe), home in on their position!!!
@@ -63,7 +62,6 @@ func _process(delta: float) -> void:
 				# Check if we've reached the target position, if so, transition to falling state
 				if position.distance_to(target.position) < capturing_distance_threshold:
 					target.position = position
-					#TODO You should take complete control of the enemy's node (for position and rotation) here
 					if target.bubble_trapped == true:
 						set_status("popping")
 					else:
