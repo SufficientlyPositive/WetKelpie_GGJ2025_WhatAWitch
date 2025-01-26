@@ -1,4 +1,7 @@
-[gd_resource type="Theme" format=3 uid="uid://cny8msiucnohq"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cny8msiucnohq"]
+
+[ext_resource type="FontFile" uid="uid://4au5igp3qy3w" path="res://Assets/Fonts/grandstander/Grandstander-Regular.ttf" id="1_6num7"]
 
 [resource]
+default_font = ExtResource("1_6num7")
 default_font_size = 70

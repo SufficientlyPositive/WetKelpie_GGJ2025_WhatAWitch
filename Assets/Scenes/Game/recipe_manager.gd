@@ -49,27 +49,27 @@ var valid_recipes : Array[Recipe] = [
 			Ingredients.SNAKE_EYES,
 			Ingredients.SNAKE_EYES,
 			Ingredients.SNAKE_EYES],
-			200),
+			100),
 	Recipe.new([
 			Ingredients.FROGS_LEG,
 			Ingredients.FROGS_LEG,
 			Ingredients.FROGS_LEG],
-			200),
+			100),
 	Recipe.new([
 			Ingredients.DEATH_ROOT,
 			Ingredients.DEATH_ROOT,
 			Ingredients.DEATH_ROOT],
-			200),
+			100),
 	Recipe.new([
 			Ingredients.TOADSTOOL,
 			Ingredients.TOADSTOOL,
 			Ingredients.TOADSTOOL],
-			200),
+			100),
 	Recipe.new([
 			Ingredients.GEMSTONE,
 			Ingredients.GEMSTONE,
 			Ingredients.GEMSTONE],
-			200),
+			100),
 	Recipe.new([
 			Ingredients.FROGS_LEG,
 			Ingredients.DEATH_ROOT,
@@ -113,7 +113,7 @@ var current_recipe : Recipe
 func pick_new_current_recipe():
 	if $MarginContainer/CurrentRecipe.get_child_count() > 1:
 		$MarginContainer/CurrentRecipe.get_child(1).queue_free()
-	current_recipe = valid_recipes.pick_random()
+	current_recipe = valid_recipes.slice(5).pick_random()
 	var rc = recipe_card.instantiate()
 	for i in range(3):
 		rc.get_node("I" + str(i)).texture = ingredient_sprites[int(current_recipe.ingredients[i])]

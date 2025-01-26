@@ -303,6 +303,31 @@ theme_override_constants/margin_right = 80
 [node name="RecipeCards" type="VBoxContainer" parent="GameCanvas/Recipes/MarginContainer"]
 layout_mode = 2
 
+[node name="RecipeCard" type="HBoxContainer" parent="GameCanvas/Recipes/MarginContainer/RecipeCards"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Val" type="Label" parent="GameCanvas/Recipes/MarginContainer/RecipeCards/RecipeCard"]
+custom_minimum_size = Vector2(142, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "ANY x3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Val2" type="Label" parent="GameCanvas/Recipes/MarginContainer/RecipeCards/RecipeCard"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CurrentRecipe" type="VBoxContainer" parent="GameCanvas/Recipes/MarginContainer"]
 layout_mode = 2
 alignment = 2
@@ -324,7 +349,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.25098)
+color = Color(0, 0, 0, 0.392157)
 
 [node name="PauseMenuButtons" type="VBoxContainer" parent="GameCanvas/PauseMenu"]
 layout_mode = 1
@@ -342,14 +367,36 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 
 [node name="ContinueButton" type="Button" parent="GameCanvas/PauseMenu/PauseMenuButtons"]
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme = ExtResource("4_w2t0c")
-text = "Continue"
+
+[node name="Label" type="Label" parent="GameCanvas/PauseMenu/PauseMenuButtons/ContinueButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONTINUE"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="QuitToMenuButton" type="Button" parent="GameCanvas/PauseMenu/PauseMenuButtons"]
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme = ExtResource("4_w2t0c")
-text = "Quit to Menu"
+
+[node name="Label" type="Label" parent="GameCanvas/PauseMenu/PauseMenuButtons/QuitToMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT TO MENU"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="GameScene" type="Node2D" parent="." node_paths=PackedStringArray("player_character", "ingredient_spawner", "enemy_spawner")]
 process_mode = 1
