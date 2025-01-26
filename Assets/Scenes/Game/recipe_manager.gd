@@ -44,6 +44,19 @@ class Recipe:
 
 const current_recipe_points_mod: int = 5
 
+static func check_wildcard_list(list: Array[RecipeManager.Ingredients]) -> bool:
+	for i in range(list.size()):
+		if not list[i] == RecipeManager.Ingredients.BUBBLED_ENEMY:
+			return false
+	return true
+	
+
+var wildcard_recipe_list= [
+	Ingredients.BUBBLED_ENEMY,
+	Ingredients.BUBBLED_ENEMY,
+	Ingredients.BUBBLED_ENEMY,
+]
+
 var valid_recipes : Array[Recipe] = [
 	Recipe.new([
 			Ingredients.SNAKE_EYES,
@@ -108,7 +121,6 @@ var valid_recipes : Array[Recipe] = [
 ]
 
 var current_recipe : Recipe
-
 
 func pick_new_current_recipe():
 	if $MarginContainer/CurrentRecipe.get_child_count() > 1:
