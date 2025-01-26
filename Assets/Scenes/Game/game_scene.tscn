@@ -76,11 +76,6 @@ animations = [{
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5vnle"]
 animations = [{
-"frames": [],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("21_64k8u")
@@ -421,11 +416,12 @@ sprite_frames = SubResource("SpriteFrames_5neq7")
 autoplay = "default"
 
 [node name="CauldronExplosion" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/Cauldron"]
+visible = false
 position = Vector2(-82.0317, -86.25)
 rotation = -0.102974
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_5vnle")
-autoplay = "default"
+animation = &"explosion"
 script = ExtResource("24_26185")
 
 [node name="EverythingKillbox" type="Area2D" parent="GameScene"]
