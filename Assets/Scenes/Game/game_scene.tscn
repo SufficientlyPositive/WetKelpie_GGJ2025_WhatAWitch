@@ -74,7 +74,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aalth"]
-size = Vector2(211.439, 92.5)
+size = Vector2(96.1513, 45.8654)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5neq7"]
 animations = [{
@@ -387,7 +387,7 @@ shape = SubResource("RectangleShape2D_o5giy")
 unique_name_in_owner = true
 z_index = 3
 position = Vector2(960, 886)
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.6, 0.6)
 collision_layer = 0
 script = ExtResource("8_euk73")
 
@@ -415,11 +415,14 @@ sprite_frames = SubResource("SpriteFrames_4hrys")
 
 [node name="Cauldron" type="Area2D" parent="GameScene/PlayerCharacter"]
 z_index = -1
+position = Vector2(19.39, 0)
+scale = Vector2(1.3, 1.3)
 collision_layer = 4
 collision_mask = 56
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameScene/PlayerCharacter/Cauldron"]
-position = Vector2(-19.3596, -15)
+position = Vector2(-77.0034, -38.3173)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_aalth")
 
 [node name="CauldronSprite" type="AnimatedSprite2D" parent="GameScene/PlayerCharacter/Cauldron"]
