@@ -124,8 +124,8 @@ var valid_recipes : Array[Recipe] = [
 var current_recipe : Recipe
 
 func pick_new_current_recipe():
-	if $MarginContainer/CurrentRecipe.get_child_count() > 1:
-		$MarginContainer/CurrentRecipe.get_child(1).queue_free()
+	if $MarginContainer/CurrentRecipe.get_child_count() > 2:
+		$MarginContainer/CurrentRecipe.get_child(2).queue_free()
 	current_recipe = valid_recipes.slice(5).pick_random()
 	var rc = recipe_card.instantiate()
 	for i in range(3):
