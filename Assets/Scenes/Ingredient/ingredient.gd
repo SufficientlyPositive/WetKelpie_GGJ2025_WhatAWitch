@@ -22,6 +22,8 @@ var current_anim_static: String
 var current_anim_tumble: String
 var anim_status: SpriteAnims = SpriteAnims.STATIC
 
+var audio_dict = {"Thudding" : []}
+@onready var audio_player : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 #var statuses : Array = ["falling", "stuck", "popping"] # Unnecessary, here for readability
 var status : String = "falling"
@@ -39,7 +41,7 @@ var bubble_trapped: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	load_audio()
 
 func on_contact(body: Node):
 	if body is StaticBody2D:
@@ -97,8 +99,15 @@ func set_status(state : String) -> void:
 		"stuck":
 			pass
 		"popping":
+			audio_player.stream = audio_dict["Thudding"][floor(randf()*3.0)]
+			audio_player.play()
 			set_deferred("freeze", true)
 			call_deferred("set_contact_monitor", false)
 			popping_velocity = (Vector2(0.0, -1.0)*300.0)
 			bubble_trapped = false
 			accum_delta = 0.0
+
+func load_audio():
+	audio_dict["Thudding"].append(load("res://Assets/Audio/Thunk00.wav"))
+	audio_dict["Thudding"].append(load("res://Assets/Audio/Thunk01.wav"))
+	audio_dict["Thudding"].append(load("res://Assets/Audio/Thunk02.wav"))
