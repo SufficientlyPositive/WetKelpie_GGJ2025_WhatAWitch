@@ -17,7 +17,7 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	time_until_next_bubble -= delta
 	if Input.is_action_pressed("Bubble") and (time_until_next_bubble < 0) and not player_reference.cauldron_exploding:
-		spawn_bubble(player_reference.position, Vector2(player_reference.get_x_accel(delta), player_reference.get_y_accel(delta)))
+		spawn_bubble(player_reference.position, Vector2(player_reference.get_x_accel(delta), player_reference.get_y_accel(delta) - 150))
 		time_until_next_bubble = bubble_throttle
 
 func spawn_bubble(pos: Vector2, acceleration: Vector2):
