@@ -84,7 +84,7 @@ func on_cauldron_body_entered(body: Node2D):
 			explode_cauldron()
 			body.queue_free()
 	elif body is Ingredient:
-		self.cauldron_contents.push_back((body as Ingredient).type)
+		self.cauldron_contents.append((body as Ingredient).type)
 		success = true
 	else:
 		var par: Node = body.get_parent()
@@ -95,16 +95,18 @@ func on_cauldron_body_entered(body: Node2D):
 				bubble.set_status("popping")
 				body = target
 				if target is Enemy:
-					self.cauldron_contents.push_back(RecipeManager.Ingredients.BUBBLED_ENEMY)
+					self.cauldron_contents.append(RecipeManager.Ingredients.BUBBLED_ENEMY)
 					success = true
 				elif target is Ingredient:
-					self.cauldron_contents.push_back((target as Ingredient).type)
+					self.cauldron_contents.append((target as Ingredient).type)
 					success = true
 				else:
 					print("wtf else are you putting in this dang cauldron?!")
 					explode_cauldron()
 	
 	if success:
+		update_cauldron_ui()
+		
 		match(get_cauldron_action()):
 			CauldronState.FINE: 
 				if RecipeManager.compare_ingredients_list(recipe_manager.current_recipe.ingredients, cauldron_contents):
