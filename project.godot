@@ -10,9 +10,12 @@ config_version=5
 
 [application]
 
-config/name="WetKelpie_GGJ2025"
+config/name="What a Witch!"
+config/version="1.0"
 run/main_scene="res://Assets/Scenes/Main/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0.157928, 0.000225842, 0.259096, 1)
+config/icon="res://Assets/Images/cauldron.png"
 
 [display]
 
