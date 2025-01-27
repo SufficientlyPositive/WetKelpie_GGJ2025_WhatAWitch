@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b536i7rsodvw0"]
+[gd_scene load_steps=14 format=3 uid="uid://b536i7rsodvw0"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Main Menu/main_menu.gd" id="1_ufqnc"]
 [ext_resource type="Theme" uid="uid://cny8msiucnohq" path="res://Assets/UI/Themes/menu_button_theme.tres" id="2_6lp63"]
@@ -7,8 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b47c5qi2y3yqv" path="res://Assets/Images/Credit Scroll 2.png" id="3_dtb3p"]
 [ext_resource type="Texture2D" uid="uid://ch58wgpfdf145" path="res://Assets/Images/Start Button 2.png" id="5_4ybx2"]
 [ext_resource type="Texture2D" uid="uid://bl2l80ck4pvsj" path="res://Assets/Images/Start Button.png" id="5_oetgk"]
-[ext_resource type="Texture2D" uid="uid://bbfq4g235f2nv" path="res://Assets/Images/Quit Button 2.png" id="6_iuggp"]
-[ext_resource type="Texture2D" uid="uid://cafw0iplok2iv" path="res://Assets/Images/Quit button.png" id="7_w8hr7"]
 [ext_resource type="Texture2D" uid="uid://u8f5c16my4sl" path="res://Assets/Images/What A Witch Title.png" id="12_ab4um"]
 [ext_resource type="Texture2D" uid="uid://eeexl2qfv6p1" path="res://Assets/Images/Wet_Kelpie_logo_revised.png" id="12_mq030"]
 [ext_resource type="FontFile" uid="uid://4au5igp3qy3w" path="res://Assets/Fonts/grandstander/Grandstander-Regular.ttf" id="13_n35va"]
@@ -16,7 +14,7 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j3vc1"]
 texture = ExtResource("5_4ybx2")
 region_rect = Rect2(0, 30, 200, 140)
-modulate_color = Color(0.864675, 0.864675, 0.864675, 1)
+modulate_color = Color(0.784314, 0.784314, 0.784314, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xl7wp"]
 texture = ExtResource("5_oetgk")
@@ -26,20 +24,6 @@ modulate_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rxtmb"]
 texture = ExtResource("5_4ybx2")
 region_rect = Rect2(0, 30, 200, 140)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dqmxo"]
-texture = ExtResource("6_iuggp")
-region_rect = Rect2(0, 30, 200, 130)
-modulate_color = Color(0.862522, 0.862522, 0.862522, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lm8ax"]
-texture = ExtResource("7_w8hr7")
-region_rect = Rect2(0, 30, 200, 130)
-modulate_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_32cay"]
-texture = ExtResource("6_iuggp")
-region_rect = Rect2(0, 30, 200, 130)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -149,35 +133,18 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("12_ab4um")
 
-[node name="ButtonContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 721.0
-offset_top = 479.0
-offset_right = 1254.0
-offset_bottom = 639.0
-scale = Vector2(1.4, 1.4)
-theme_override_constants/separation = 20
-
-[node name="StartButton" type="Button" parent="ButtonContainer"]
-custom_minimum_size = Vector2(0, 160)
+[node name="StartButton" type="Button" parent="."]
 layout_mode = 2
+offset_left = 752.0
+offset_top = 367.0
+offset_right = 1434.0
+offset_bottom = 748.0
 size_flags_horizontal = 3
 focus_mode = 0
 theme = ExtResource("2_6lp63")
 theme_override_styles/hover = SubResource("StyleBoxTexture_j3vc1")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_xl7wp")
 theme_override_styles/normal = SubResource("StyleBoxTexture_rxtmb")
-
-[node name="QuitButton" type="Button" parent="ButtonContainer"]
-custom_minimum_size = Vector2(0, 110)
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme = ExtResource("2_6lp63")
-theme_override_styles/hover = SubResource("StyleBoxTexture_dqmxo")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_lm8ax")
-theme_override_styles/normal = SubResource("StyleBoxTexture_32cay")
 
 [node name="Music License Label" type="Label" parent="."]
 layout_mode = 1
@@ -194,5 +161,4 @@ text = "\"The Path of the Goblin King v2\" Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 4.0 License
 http://creativecommons.org/licenses/by/4.0/"
 
-[connection signal="pressed" from="ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
