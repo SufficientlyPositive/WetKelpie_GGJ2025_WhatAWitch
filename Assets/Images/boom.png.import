@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f7bunx4wtge6"
-path="res://.godot/imported/ingredient_snake_eyes.png-4b14c9fef62ff775fbdb54ec43526aaf.ctex"
+uid="uid://g2lwiq3rkstf"
+path="res://.godot/imported/boom.png-32bb3a697de17cf1b2aab439f446cece.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Programmer Art/ingredient_snake_eyes.png"
-dest_files=["res://.godot/imported/ingredient_snake_eyes.png-4b14c9fef62ff775fbdb54ec43526aaf.ctex"]
+source_file="res://Assets/Images/boom.png"
+dest_files=["res://.godot/imported/boom.png-32bb3a697de17cf1b2aab439f446cece.ctex"]
 
 [params]
 
