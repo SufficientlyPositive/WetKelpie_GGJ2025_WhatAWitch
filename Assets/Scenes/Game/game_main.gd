@@ -32,6 +32,22 @@ func quit_to_main_menu():
 func _process(_delta):
 	if Input.is_action_just_pressed("Toggle Pause Menu"):
 		toggle_pause()
+	elif Input.is_action_just_pressed("Mute SFX"):
+		AudioServer.set_bus_volume_db(1, -80.0)
+		$TouchControls/SfxBgm/SfxOn.visible = false
+		$TouchControls/SfxBgm/SfxOff.visible = true
+	elif Input.is_action_just_pressed("Unmute SFX"):
+		AudioServer.set_bus_volume_db(1, 0.0)
+		$TouchControls/SfxBgm/SfxOff.visible = false
+		$TouchControls/SfxBgm/SfxOn.visible = true
+	elif Input.is_action_just_pressed("Mute BGM"):
+		AudioServer.set_bus_volume_db(2, -80.0)
+		$TouchControls/SfxBgm/BgmOn.visible = false
+		$TouchControls/SfxBgm/BgmOff.visible = true
+	elif Input.is_action_just_pressed("Unmute BGM"):
+		AudioServer.set_bus_volume_db(2, 0.0)
+		$TouchControls/SfxBgm/BgmOff.visible = false
+		$TouchControls/SfxBgm/BgmOn.visible = true
 
 func change_points(add_val: int) -> void:
 	points += add_val

@@ -1,30 +1,48 @@
-[gd_scene load_steps=42 format=3 uid="uid://c5fhm7hriksjo"]
+[gd_scene load_steps=62 format=3 uid="uid://c5fhm7hriksjo"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_main.gd" id="1_2dtmn"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_scene.gd" id="1_o8wbe"]
+[ext_resource type="Texture2D" uid="uid://dwjp5rbmjnoir" path="res://Assets/Images/Kenney Art/left.png" id="2_eeoym"]
+[ext_resource type="Texture2D" uid="uid://0gfhlsfouio8" path="res://Assets/Images/Kenney Art/pause.png" id="2_xeboa"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/game_ui.gd" id="3_m2qu8"]
 [ext_resource type="Texture2D" uid="uid://c0gx8waw6vpf7" path="res://Assets/Images/Background Scroll.png" id="3_muc21"]
+[ext_resource type="Texture2D" uid="uid://dxg2f86nm8r1u" path="res://Assets/Images/Kenney Art/pause_pressed.png" id="3_tfvli"]
+[ext_resource type="Texture2D" uid="uid://cc5ab3ry25bnv" path="res://Assets/Images/Kenney Art/left_pressed.png" id="3_xm46n"]
 [ext_resource type="Texture2D" uid="uid://dficnt53eks1u" path="res://Assets/Images/Background Columns.png" id="4_5efoe"]
+[ext_resource type="Texture2D" uid="uid://vfe85247e63f" path="res://Assets/Images/Kenney Art/sfx_on.png" id="4_ujc8w"]
 [ext_resource type="Theme" uid="uid://cny8msiucnohq" path="res://Assets/UI/Themes/menu_button_theme.tres" id="4_w2t0c"]
 [ext_resource type="Texture2D" uid="uid://c3wvr7u24rsjm" path="res://Assets/Images/Bckground centre shadows.png" id="5_3jo83"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/recipe_manager.gd" id="5_tkifj"]
+[ext_resource type="Texture2D" uid="uid://det5udvv4ijy1" path="res://Assets/Images/Kenney Art/sfx_on_pressed.png" id="5_vk7w2"]
+[ext_resource type="Texture2D" uid="uid://pw6gtnwj6ldu" path="res://Assets/Images/Kenney Art/sfx_off.png" id="6_kw1s8"]
 [ext_resource type="Texture2D" uid="uid://do4kbiwqlode7" path="res://Assets/Images/Cauldron List.png" id="6_nj5fe"]
+[ext_resource type="Texture2D" uid="uid://bwnuo7ojuhu17" path="res://Assets/Images/Kenney Art/sfx_off_pressed.png" id="7_c6g8p"]
 [ext_resource type="Texture2D" uid="uid://clndotwhc88xb" path="res://Assets/Images/Recipe List.png" id="7_jbq0w"]
 [ext_resource type="FontFile" uid="uid://cwltetxo7ybuy" path="res://Assets/Fonts/grandstander/Grandstander-Bold.ttf" id="7_rud6v"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/player_character.gd" id="8_euk73"]
+[ext_resource type="Texture2D" uid="uid://cry4h5p67qms" path="res://Assets/Images/Kenney Art/bgm_on.png" id="8_ojjew"]
+[ext_resource type="Texture2D" uid="uid://chvoqdkud4388" path="res://Assets/Images/Kenney Art/bgm_on_pressed.png" id="9_023gp"]
 [ext_resource type="PackedScene" uid="uid://chrrjtg6y86xk" path="res://Assets/Scenes/Enemy/enemy_control.tscn" id="9_37kig"]
+[ext_resource type="Texture2D" uid="uid://nsyvjfnxc0k2" path="res://Assets/Images/Kenney Art/bgm_off.png" id="10_03pdi"]
 [ext_resource type="FontFile" uid="uid://4au5igp3qy3w" path="res://Assets/Fonts/grandstander/Grandstander-Regular.ttf" id="10_e0v8r"]
 [ext_resource type="Texture2D" uid="uid://orw34kbv4e0n" path="res://Assets/Images/Haggis Bubbled.png" id="11_qds3o"]
+[ext_resource type="Texture2D" uid="uid://cf11rwaos5y4d" path="res://Assets/Images/Kenney Art/bgm_off_pressed.png" id="11_ssatt"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/everything_killbox.gd" id="13_4tnrd"]
 [ext_resource type="Texture2D" uid="uid://b2wq0xvh2m476" path="res://Assets/Images/Game Over.png" id="13_cfpxs"]
+[ext_resource type="Texture2D" uid="uid://bbqevirt1b3e7" path="res://Assets/Images/Kenney Art/bubble.png" id="14_70ptx"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/ingredient_spawner.gd" id="14_xe6ob"]
 [ext_resource type="PackedScene" uid="uid://bu3dpmmojpwr6" path="res://Assets/Scenes/Bubble/bubble_control.tscn" id="15_44rxp"]
+[ext_resource type="Texture2D" uid="uid://chtwxdrbxdi03" path="res://Assets/Images/Kenney Art/bubble_pressed.png" id="15_wko2f"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/spawning_area.gd" id="16_1au7j"]
 [ext_resource type="Texture2D" uid="uid://drvbaoed44owq" path="res://Assets/Images/Platform.png" id="16_k7shc"]
+[ext_resource type="Texture2D" uid="uid://btroaro2bjg42" path="res://Assets/Images/Kenney Art/right.png" id="17_w5ts4"]
 [ext_resource type="Texture2D" uid="uid://cmgeugs6upte6" path="res://Assets/Images/Witch Slimeblooie.png" id="18_7bvry"]
+[ext_resource type="Texture2D" uid="uid://crmxbtjh8nchq" path="res://Assets/Images/Kenney Art/right_pressed.png" id="18_djgga"]
 [ext_resource type="Texture2D" uid="uid://b7ptfg8dd55w6" path="res://Assets/Images/Witch Flying.png" id="18_dn552"]
 [ext_resource type="Texture2D" uid="uid://bku6mxyv0wa3u" path="res://Assets/Images/ShieldCat.png" id="19_8001e"]
+[ext_resource type="Texture2D" uid="uid://3tetubofq5mc" path="res://Assets/Images/Kenney Art/up.png" id="19_n5ako"]
 [ext_resource type="Texture2D" uid="uid://dxqoyk4scnh8f" path="res://Assets/Images/Witch Kablooie.png" id="19_osicn"]
+[ext_resource type="Texture2D" uid="uid://c38vsgicwesjb" path="res://Assets/Images/Kenney Art/up_pressed.png" id="20_k5l7c"]
 [ext_resource type="Texture2D" uid="uid://bat1saymbcf24" path="res://Assets/Images/cauldron.png" id="20_ya0mu"]
 [ext_resource type="Texture2D" uid="uid://efuwl0pkk8h4" path="res://Assets/Images/ShieldCat Used.png" id="21_50ed0"]
 [ext_resource type="Texture2D" uid="uid://b2xm24udpqdgr" path="res://Assets/Images/Cauldron Det 1.png" id="21_64k8u"]
@@ -32,6 +50,12 @@
 [ext_resource type="Texture2D" uid="uid://b16ej5f053lfv" path="res://Assets/Images/Cauldron Det 3.png" id="23_5vt8b"]
 [ext_resource type="Script" path="res://Assets/Scenes/Game/cauldron_explosion.gd" id="24_26185"]
 [ext_resource type="AudioStream" uid="uid://pwckxe3up1um" path="res://Assets/Audio/The Path of the Goblin King v2.mp3" id="31_4r5c0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ko6p4"]
+size = Vector2(120, 120)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1pm7t"]
+radius = 100.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia71d"]
 bg_color = Color(0.298039, 0.0509804, 0.054902, 1)
@@ -121,6 +145,127 @@ animations = [{
 script = ExtResource("1_2dtmn")
 game_scene = NodePath("GameScene")
 game_canvas = NodePath("GameCanvas")
+
+[node name="TouchControls" type="MarginContainer" parent="."]
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Pause" type="Control" parent="TouchControls"]
+z_index = 200
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Pause" type="TouchScreenButton" parent="TouchControls/Pause"]
+position = Vector2(95, 0)
+texture_normal = ExtResource("2_xeboa")
+texture_pressed = ExtResource("3_tfvli")
+shape = SubResource("RectangleShape2D_ko6p4")
+shape_visible = false
+action = "Toggle Pause Menu"
+visibility_mode = 1
+
+[node name="SfxBgm" type="Control" parent="TouchControls"]
+z_index = 200
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="SfxOn" type="TouchScreenButton" parent="TouchControls/SfxBgm"]
+position = Vector2(-120, 0)
+texture_normal = ExtResource("4_ujc8w")
+texture_pressed = ExtResource("5_vk7w2")
+shape = SubResource("RectangleShape2D_ko6p4")
+shape_visible = false
+action = "Mute SFX"
+visibility_mode = 1
+
+[node name="SfxOff" type="TouchScreenButton" parent="TouchControls/SfxBgm"]
+visible = false
+position = Vector2(-120, 0)
+texture_normal = ExtResource("6_kw1s8")
+texture_pressed = ExtResource("7_c6g8p")
+shape = SubResource("RectangleShape2D_ko6p4")
+shape_visible = false
+action = "Unmute SFX"
+visibility_mode = 1
+
+[node name="BgmOn" type="TouchScreenButton" parent="TouchControls/SfxBgm"]
+position = Vector2(-260, 0)
+texture_normal = ExtResource("8_ojjew")
+texture_pressed = ExtResource("9_023gp")
+shape = SubResource("RectangleShape2D_ko6p4")
+shape_visible = false
+action = "Mute BGM"
+visibility_mode = 1
+
+[node name="BgmOff" type="TouchScreenButton" parent="TouchControls/SfxBgm"]
+visible = false
+position = Vector2(-260, 0)
+texture_normal = ExtResource("10_03pdi")
+texture_pressed = ExtResource("11_ssatt")
+shape = SubResource("RectangleShape2D_ko6p4")
+shape_visible = false
+action = "Unmute BGM"
+visibility_mode = 1
+
+[node name="LeftRight" type="Control" parent="TouchControls"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="MoveLeft" type="TouchScreenButton" parent="TouchControls/LeftRight"]
+position = Vector2(0, -160)
+texture_normal = ExtResource("2_eeoym")
+texture_pressed = ExtResource("3_xm46n")
+shape = SubResource("CircleShape2D_1pm7t")
+shape_visible = false
+passby_press = true
+action = "Move Left"
+visibility_mode = 1
+
+[node name="MoveRight" type="TouchScreenButton" parent="TouchControls/LeftRight"]
+position = Vector2(220, -160)
+texture_normal = ExtResource("17_w5ts4")
+texture_pressed = ExtResource("18_djgga")
+shape = SubResource("CircleShape2D_1pm7t")
+shape_visible = false
+passby_press = true
+action = "Move Right"
+visibility_mode = 1
+
+[node name="BubbleJump" type="Control" parent="TouchControls"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Jump" type="TouchScreenButton" parent="TouchControls/BubbleJump"]
+position = Vector2(-160, -160)
+texture_normal = ExtResource("19_n5ako")
+texture_pressed = ExtResource("20_k5l7c")
+shape = SubResource("CircleShape2D_1pm7t")
+shape_visible = false
+passby_press = true
+action = "Jump"
+visibility_mode = 1
+
+[node name="Bubble" type="TouchScreenButton" parent="TouchControls/BubbleJump"]
+position = Vector2(-380, -160)
+texture_normal = ExtResource("14_70ptx")
+texture_pressed = ExtResource("15_wko2f")
+shape = SubResource("CircleShape2D_1pm7t")
+shape_visible = false
+passby_press = true
+action = "Bubble"
+visibility_mode = 1
 
 [node name="GameCanvas" type="Node" parent="." node_paths=PackedStringArray("pause_menu", "game_over_menu")]
 script = ExtResource("3_m2qu8")
@@ -615,6 +760,7 @@ animation = &"explosion"
 script = ExtResource("24_26185")
 
 [node name="PlayerAudio" type="AudioStreamPlayer2D" parent="GameScene/PlayerCharacter"]
+bus = &"SFX"
 
 [node name="EverythingKillbox" type="Area2D" parent="GameScene"]
 script = ExtResource("13_4tnrd")
@@ -626,6 +772,7 @@ polygon = PackedVector2Array(-685.721, 1740, 2687.18, 1740, 2720.6, -567, -695.8
 stream = ExtResource("31_4r5c0")
 volume_db = -10.0
 autoplay = true
+bus = &"BGM"
 
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/ContinueButton" to="." method="toggle_pause"]
 [connection signal="pressed" from="GameCanvas/PauseMenu/PauseMenuButtons/QuitToMenuButton" to="." method="quit_to_main_menu"]
